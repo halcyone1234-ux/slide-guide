@@ -1,0 +1,583 @@
+/* 像素介面元件：邊框、按鈕、HUD、進度條、對話框、螢幕外框、捲動提示。 */
+
+/* 吉祥物小圖：只用整數倍放大 */
+.sprite {
+  flex: none;
+  width: calc(var(--w) * var(--scale) * 1px);
+  max-width: none;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.picon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+}
+
+.picon--lg {
+  width: 21px;
+  height: 21px;
+}
+
+/* 階梯狀的角加硬邊陰影。外框不佔版面，用外距留出位置。 */
+.px-box,
+.px-btn {
+  margin: var(--px) calc(var(--px) * 2) calc(var(--px) * 2) var(--px);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--line),
+    0 var(--px) 0 0 var(--line),
+    calc(var(--px) * -1) 0 0 0 var(--line),
+    var(--px) 0 0 0 var(--line),
+    var(--px) calc(var(--px) * 2) 0 0 var(--line),
+    calc(var(--px) * 2) var(--px) 0 0 var(--line);
+}
+
+.px-box {
+  background: var(--white);
+}
+
+.px-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--px) * 2);
+  min-height: 48px;
+  padding: calc(var(--px) * 3) calc(var(--px) * 4);
+  border: 0;
+  border-radius: 0;
+  background: var(--orange);
+  color: var(--navy);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.px-btn:hover {
+  background: var(--orange-soft);
+}
+
+/* 按下去時往右下沉一個單位 */
+.px-btn:active,
+.px-btn[aria-pressed="true"] {
+  transform: translate(var(--px), var(--px));
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--line),
+    0 var(--px) 0 0 var(--line),
+    calc(var(--px) * -1) 0 0 0 var(--line),
+    var(--px) 0 0 0 var(--line);
+}
+
+.px-btn:focus-visible {
+  outline-color: var(--navy);
+}
+
+.px-btn--plain {
+  background: var(--white);
+}
+
+.px-btn--plain:hover {
+  background: var(--paper-deep);
+}
+
+.px-btn--plain[aria-pressed="true"] {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.px-btn--bad {
+  background: var(--white);
+  color: var(--red);
+}
+
+.px-btn--bad:hover {
+  background: #FBE9E6;
+}
+
+.px-btn--bad[aria-pressed="true"] {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* 頂端 HUD */
+.hud {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: calc(var(--hud-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--navy-deep);
+  box-shadow: 0 var(--px) 0 0 var(--line);
+  color: var(--white);
+}
+
+/* 進度條：一格一格的方塊 */
+.hud__progress {
+  display: flex;
+  gap: 2px;
+  height: 12px;
+  padding: 4px var(--gutter-r) 0 var(--gutter-l);
+}
+
+.hud__progress i {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--navy-soft);
+}
+
+.hud__progress i.is-on {
+  background: var(--orange);
+}
+
+.hud__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: calc(var(--hud-h) - 12px);
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+
+.hud__logo {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--white);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hud__nav {
+  display: flex;
+  flex: none;
+  gap: var(--px);
+}
+
+.hud__nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 40px;
+  color: var(--white);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+  text-decoration: none;
+}
+
+.hud__nav a:hover {
+  background: var(--navy-soft);
+}
+
+.hud__nav a[aria-current="true"] {
+  background: var(--orange);
+  color: var(--navy);
+}
+
+.hud__tools {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.hud__present {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--px) * 2);
+  height: 40px;
+  padding: 0 calc(var(--px) * 3);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hud__present:hover {
+  background: var(--navy-soft);
+}
+
+.hud__present[aria-pressed="true"] {
+  background: var(--green);
+}
+
+/* 四個理由：固定的圖示和顏色 */
+.reason {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--px) * 2);
+  padding: calc(var(--px) * 2) calc(var(--px) * 3);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.reason--me {
+  background: var(--orange);
+  color: var(--navy);
+}
+
+.reason--curious {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.reason--easy {
+  background: var(--green);
+  color: var(--white);
+}
+
+.reason--vary {
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* 觀眾魟魚 */
+.audience {
+  position: fixed;
+  right: max(12px, env(safe-area-inset-right, 0px));
+  bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--px);
+  pointer-events: none;
+  transition: transform 0.24s steps(4, end);
+}
+
+/* 手機上下面有內容時，往右躲到畫面外 */
+.audience.is-away {
+  transform: translateX(calc(100% + 16px));
+}
+
+.audience__label {
+  padding: var(--px) calc(var(--px) * 2);
+  background: var(--navy-deep);
+  color: var(--white);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+}
+
+.audience__label b {
+  color: var(--orange);
+  font-weight: 400;
+}
+
+.audience__pad {
+  display: flex;
+  align-items: flex-end;
+  height: calc(31px * var(--manta));
+  --manta: 3;
+}
+
+.audience .sprite {
+  --scale: var(--manta);
+  animation: bob 1.2s linear infinite;
+}
+
+@media (min-height: 900px) {
+  html[data-present] .audience__pad {
+    --manta: 4;
+  }
+}
+
+/* 對話框 */
+.dialog {
+  --talk: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: calc(var(--px) * 4);
+}
+
+.dialog__who {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  justify-content: center;
+  width: calc(46px * var(--talk));
+}
+
+.dialog__who .sprite {
+  --scale: var(--talk);
+  animation: bob 1s linear infinite;
+}
+
+.dialog__box {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: calc(var(--px) * 3) calc(var(--px) * 4);
+  background: var(--cream);
+  cursor: pointer;
+}
+
+/* 對話框的小尾巴 */
+.dialog__box::before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--px) * 4);
+  left: calc(var(--px) * -3);
+  width: calc(var(--px) * 2);
+  height: calc(var(--px) * 2);
+  background: var(--cream);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--line),
+    0 var(--px) 0 0 var(--line),
+    calc(var(--px) * -1) 0 0 0 var(--line);
+}
+
+.dialog__name {
+  margin-bottom: calc(var(--px) * 2);
+  color: var(--green-text);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+}
+
+.dialog__text {
+  min-height: 3.2em;
+  line-height: 1.6;
+}
+
+.say-rest {
+  visibility: hidden;
+}
+
+/* 打完字後的提示方塊 */
+.dialog__box::after {
+  content: "";
+  position: absolute;
+  right: calc(var(--px) * 3);
+  bottom: calc(var(--px) * 3);
+  width: calc(var(--px) * 2);
+  height: calc(var(--px) * 2);
+  background: var(--orange);
+  animation: blink 1s steps(1, end) infinite;
+}
+
+.dialog__box.is-typing::after {
+  display: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (min-height: 900px) {
+  html[data-present] .dialog {
+    --talk: 3;
+  }
+}
+
+/* 螢幕外框：示範投影片一律放在裡面 */
+.monitor__body {
+  margin-bottom: calc(var(--px) * 2);
+  padding: calc(var(--px) * 3) calc(var(--px) * 3) calc(var(--px) * 2);
+  background: var(--navy-deep);
+}
+
+.monitor__screen {
+  background: var(--white);
+}
+
+.monitor__chin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 24px;
+  padding-top: calc(var(--px) * 2);
+  color: var(--mist);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+html[data-present] .monitor__chin {
+  font-size: max(14px, 2.2vh);
+}
+
+.monitor__led {
+  flex: none;
+  width: calc(var(--px) * 2);
+  height: calc(var(--px) * 2);
+  background: var(--orange);
+}
+
+.monitor__stand {
+  width: 112px;
+  height: calc(var(--px) * 4);
+  margin-inline: auto;
+  background: var(--navy-soft);
+  box-shadow:
+    calc(var(--px) * -1) 0 0 0 var(--line),
+    var(--px) 0 0 0 var(--line);
+}
+
+.monitor__base {
+  width: 208px;
+  max-width: 60%;
+  height: calc(var(--px) * 2);
+  margin-inline: auto;
+  background: var(--navy-soft);
+  box-shadow:
+    0 calc(var(--px) * -1) 0 0 var(--line),
+    0 var(--px) 0 0 var(--line),
+    calc(var(--px) * -1) 0 0 0 var(--line),
+    var(--px) 0 0 0 var(--line);
+}
+
+/* 捲動提示：像素箭頭上下跳動 */
+.scroll-cue {
+  display: inline-flex;
+  color: var(--orange);
+  animation: bob 0.8s linear infinite;
+}
+
+@media (max-width: 720px) {
+  /* 比較寬的小圖在手機上縮一級，才不會把整個版面撐寬 */
+  .sprite--wide {
+    --scale: 2;
+  }
+
+  .hud__logo,
+  .hud__tools {
+    display: none;
+  }
+
+  .hud__row {
+    justify-content: center;
+  }
+
+  .hud__nav a {
+    width: 48px;
+  }
+
+  .audience__label {
+    display: none;
+  }
+
+  .audience__pad,
+  html[data-present] .audience__pad {
+    --manta: 2;
+  }
+}
+
+/* 對錯回饋：選錯閃一次紅框，做對時馬鈴薯跳出來放煙火 */
+.fb-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  background: rgba(192, 57, 43, 0.14);
+  box-shadow: inset 0 0 0 calc(var(--px) * 3) var(--red);
+  opacity: 0;
+}
+
+.fb-flash.is-on {
+  animation: fb-flash 0.42s steps(3, end);
+}
+
+@keyframes fb-flash {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* 變色時字色也一起換，按下狀態的白字才不會看不見 */
+.fb-wrong {
+  background-color: #FBE3DF !important;
+  color: #8E2B20 !important;
+  animation: fb-shake 0.3s steps(3, end);
+}
+
+.fb-right {
+  background-color: #DDF0E8 !important;
+  color: var(--ink) !important;
+}
+
+@keyframes fb-shake {
+  33% {
+    transform: translateX(calc(var(--px) * -2));
+  }
+
+  66% {
+    transform: translateX(calc(var(--px) * 2));
+  }
+}
+
+.fb-party {
+  position: fixed;
+  inset: 0;
+  z-index: 46;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fb-party canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* 馬鈴薯從畫面下方跳上來，放完煙火再跳下去 */
+.fb-party .sprite {
+  position: absolute;
+  bottom: 0;
+  left: 22%;
+  animation: fb-pop 2.1s linear both;
+}
+
+@keyframes fb-pop {
+  0% {
+    transform: translateY(100%);
+  }
+
+  6% {
+    transform: translateY(66%);
+  }
+
+  10% {
+    transform: translateY(0);
+  }
+
+  40%,
+  60% {
+    transform: translateY(calc(var(--px) * -2));
+  }
+
+  50%,
+  86% {
+    transform: translateY(0);
+  }
+
+  92% {
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(110%);
+  }
+}

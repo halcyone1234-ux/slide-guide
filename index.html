@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>讓人想看下去的簡報</title>
+<meta name="description" content="從想到講，一步一步做出讓人想看下去的期末報告簡報。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/pixel.css">
+<link rel="stylesheet" href="assets/css/scenes.css">
+<link rel="stylesheet" href="assets/css/slide.css">
+<link rel="stylesheet" href="assets/css/transition.css">
+<link rel="stylesheet" href="assets/css/print.css">
+</head>
+<body>
+<script>
+/* 第一次畫面出現前就決定要不要播進場動畫，內容才不會先閃一下。 */
+(function () {
+  var root = document.documentElement;
+  if (!('IntersectionObserver' in window) || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+  root.classList.add('tr-on');
+  /* 萬一轉場程式沒載入，內容還是要看得到。 */
+  window.setTimeout(function () { if (!window.Transition) { root.classList.remove('tr-on'); } }, 3000);
+})();
+</script>
+
+<a class="skip" href="#s-0-2">跳到內容</a>
+
+<!-- 像素圖示 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-play" viewBox="0 0 7 7"><path d="M0 0h1v7H0zM1 1h2v5H1zM3 2h2v3H3zM5 3h2v1H5z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 7 7"><path d="M2 0h3v3H2zM0 3h7v1H0zM1 4h5v1H1zM2 5h3v1H2zM3 6h1v1H3z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 7 7"><path d="M0 0h1v7H0zM1 0h5v3H1zM1 3h3v1H1z"/></symbol>
+  <symbol id="i-screen" viewBox="0 0 7 7"><path d="M0 0h7v1H0zM0 1h1v3H0zM6 1h1v3H6zM0 4h7v1H0zM3 5h1v1H3zM2 6h3v1H2z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 7 7"><path d="M1 0h2v1H1zM4 0h2v1H4zM0 1h7v2H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z"/></symbol>
+  <symbol id="i-question" viewBox="0 0 7 7"><path d="M1 0h5v1H1zM0 1h2v1H0zM5 1h2v1H5zM4 2h2v1H4zM3 3h2v2H3zM3 6h2v1H3z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 7 7"><path d="M2 1h3v1H2zM1 2h1v1H1zM5 2h1v1H5zM0 3h1v1H0zM3 3h1v1H3zM6 3h1v1H6zM1 4h1v1H1zM5 4h1v1H5zM2 5h3v1H2z"/></symbol>
+  <symbol id="i-mix" viewBox="0 0 7 7"><path d="M0 0h3v3H0zM4 0h1v1H4zM6 0h1v1H6zM4 2h1v1H4zM6 2h1v1H6zM0 4h1v1H0zM2 4h1v1H2zM0 6h1v1H0zM2 6h1v1H2zM4 4h3v3H4z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 7 7"><path d="M6 0h1v1H6zM5 1h2v1H5zM0 2h1v1H0zM4 2h2v1H4zM0 3h2v1H0zM3 3h2v1H3zM1 4h3v1H1zM2 5h1v1H2z"/></symbol>
+  <symbol id="i-cross" viewBox="0 0 7 7"><path d="M0 0h2v1H0zM5 0h2v1H5zM0 1h3v1H0zM4 1h3v1H4zM1 2h5v1H1zM2 3h3v1H2zM1 4h5v1H1zM0 5h3v1H0zM4 5h3v1H4zM0 6h2v1H0zM5 6h2v1H5z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 7 7"><path d="M3 0h1v2H3zM0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM1 6h1v1H1zM5 6h1v1H5z"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 7 7"><path d="M0 3h7v1H0z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 7 7"><path d="M3 0h1v7H3zM0 3h7v1H0z"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 7 7"><path d="M1 0h5v1H1zM0 1h7v3H0zM1 4h5v1H1zM2 5h2v1H2zM1 6h1v1H1z"/></symbol>
+  <symbol id="i-hook" viewBox="0 0 7 7"><path d="M4 0h2v1H4zM4 1h1v4H4zM0 3h1v2H0zM1 5h1v1H1zM3 5h1v1H3zM2 6h1v1H2z"/></symbol>
+  <symbol id="i-film" viewBox="0 0 7 7"><path d="M0 0h7v1H0zM0 1h1v1H0zM2 1h1v1H2zM4 1h1v1H4zM6 1h1v1H6zM0 2h7v3H0zM0 5h1v1H0zM2 5h1v1H2zM4 5h1v1H4zM6 5h1v1H6zM0 6h7v1H0z"/></symbol>
+</svg>
+
+<header class="hud" id="hud">
+  <div class="hud__progress" id="progress" role="progressbar" aria-label="全站進度" aria-valuemin="0" aria-valuemax="34" aria-valuenow="1"></div>
+  <div class="hud__row">
+    <a class="hud__logo" href="#s-0-1">讓人想看下去的簡報</a>
+    <nav class="hud__nav" aria-label="章節">
+      <a href="#lv-1" data-nav="1">想</a>
+      <a href="#lv-2" data-nav="2">生</a>
+      <a href="#lv-3" data-nav="3">修</a>
+      <a href="#lv-4" data-nav="4">看</a>
+      <a href="#lv-5" data-nav="5">講</a>
+      <a href="#lv-6" data-nav="6" aria-label="檢查表"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-flag"/></svg></a>
+    </nav>
+    <div class="hud__tools">
+      <button class="hud__present" id="btnPresent" type="button" aria-pressed="false" title="投影模式（按 P 切換）">
+        <svg class="picon picon--lg" aria-hidden="true"><use href="#i-screen"/></svg>投影
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ========== 第 0 章 開場 ========== -->
+
+<section class="scene hero" id="s-0-1" data-scene="0-1" data-chapter="0" data-audience="neutral" aria-labelledby="t-0-1">
+  <i class="hero__stars" aria-hidden="true"></i>
+  <div class="hero__layout">
+    <div class="hero__copy">
+      <p class="hero__course" data-config="course" data-tr hidden></p>
+      <h1 class="hero__title" id="t-0-1">
+        <span class="hero__t1" data-tr>做一份</span>
+        <span class="hero__t2" data-tr="hop">讓人想看下去</span>
+        <span class="hero__t3" data-tr>的簡報</span>
+      </h1>
+      <p class="hero__sub" data-tr><span data-config="minutes">20</span> 分鐘、<span data-config="pages">20</span> 頁，從想到講</p>
+      <div class="hero__cta" data-tr>
+        <a class="px-btn hero__start" href="#s-0-2"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-play"/></svg>開始闖關</a>
+        <span class="hero__hint"><span class="scroll-cue" aria-hidden="true"><svg class="picon picon--lg"><use href="#i-down"/></svg></span>按空白鍵，或往下捲</span>
+      </div>
+    </div>
+    <div class="hero__actor">
+      <div class="hero__spot" aria-hidden="true" data-tr="lamp">
+        <svg class="hero__beam" viewBox="0 0 30 40" preserveAspectRatio="none" shape-rendering="crispEdges"><path fill="currentColor" d="M12 0h6v4h-6zM11 4h8v4h-8zM10 8h10v4H10zM9 12h12v4H9zM8 16h14v4H8zM7 20h16v4H7zM6 24h18v4H6zM5 28h20v4H5zM4 32h22v4H4zM3 36h24v4H3z"/></svg>
+        <i class="hero__lamp"></i>
+      </div>
+      <img class="sprite" data-tr="drop" src="assets/img/mascots/1x/potato_present.png" width="36" height="50" style="--w:36" alt="拿著麥克風站在舞台上的馬鈴薯">
+    </div>
+  </div>
+  <nav class="hero__floor" aria-label="關卡地圖" data-tr>
+    <ol class="map">
+      <li><a class="px-btn" href="#lv-1" aria-label="第 1 關：想">想</a></li>
+      <li><a class="px-btn" href="#lv-2" aria-label="第 2 關：生">生</a></li>
+      <li><a class="px-btn" href="#lv-3" aria-label="第 3 關：修">修</a></li>
+      <li><a class="px-btn" href="#lv-4" aria-label="第 4 關：看">看</a></li>
+      <li><a class="px-btn" href="#lv-5" aria-label="第 5 關：講">講</a></li>
+      <li><a class="px-btn px-btn--plain" href="#lv-6" aria-label="最後任務：檢查表"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-flag"/></svg></a></li>
+    </ol>
+  </nav>
+</section>
+
+<section class="scene" id="s-0-2" data-scene="0-2" data-chapter="0" data-audience="thinking" aria-labelledby="t-0-2">
+  <div class="scene__chrome" data-tr><span class="scene__no">0-2</span></div>
+  <div class="duel" data-duel>
+    <div class="duel__head" data-tr>
+      <h2 class="scene__title" id="t-0-2">哪一份，你想看第四頁？</h2>
+      <div class="duel__lead">
+        <p class="scene__lead">兩份簡報各播前三頁。先別管內容，憑感覺選一份。</p>
+        <button class="px-btn px-btn--plain duel__replay" type="button" data-replay hidden><svg class="picon picon--lg" aria-hidden="true"><use href="#i-play"/></svg>重播</button>
+      </div>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_face_thinking.png" width="46" height="50" style="--w:46" alt="正在思考的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="先別管內容，憑感覺選一份。">先別管內容，憑感覺選一份。</p>
+      </div>
+    </div>
+
+    <div class="duel__deck duel__deck--a" data-tr="from-left">
+      <div class="duel__bar">
+        <p class="duel__name">簡報 A</p>
+        <button class="px-btn px-btn--plain duel__vote" type="button" data-vote="a" aria-pressed="false" hidden>想看 A 的第四頁</button>
+      </div>
+      <div class="monitor">
+        <div class="monitor__body px-box">
+          <div class="monitor__screen">
+            <div class="deck" data-deck="a" data-mode="sheet" data-revealed>
+              <figure class="deck__page">
+                <article class="slide slide--dull slide--cover">
+                  <p class="s-head">歪歪菜的行銷策略分析</p>
+                  <p class="s-group">第三組　王小明　李小華　陳大同</p>
+                </article>
+                <figcaption class="deck__note">我們是誰</figcaption>
+              </figure>
+              <figure class="deck__page">
+                <article class="slide slide--dull">
+                  <p class="s-toc">目錄</p>
+                  <ul class="s-list">
+                    <li>公司簡介</li>
+                    <li>市場分析</li>
+                    <li>SWOT 分析</li>
+                    <li>行銷策略</li>
+                    <li>結論與建議</li>
+                  </ul>
+                </article>
+                <figcaption class="deck__note">要講什麼</figcaption>
+              </figure>
+              <figure class="deck__page">
+                <article class="slide slide--dull slide--wall">
+                  <p class="s-toc">研究背景</p>
+                  <p class="s-wall">近年來，隨著環保意識逐漸抬頭，惜食與減少食物浪費的概念受到各界重視。蔬果從產地到餐桌之間耗損可觀，其中又以外觀不符規格的格外品占相當比例。歪歪菜成立於 2022 年，致力於提供消費者產地直送的格外品蔬菜，希望讓好吃但不好看的蔬菜找到去處，並推廣永續消費的理念……</p>
+                </article>
+                <figcaption class="deck__note">查了什麼</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="monitor__chin"><i class="monitor__led"></i><span>示範用，內容為虛構</span></div>
+        </div>
+        <div class="monitor__stand" aria-hidden="true"></div>
+        <div class="monitor__base" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="duel__deck duel__deck--b" data-tr="from-right">
+      <div class="duel__bar">
+        <p class="duel__name">簡報 B</p>
+        <button class="px-btn px-btn--plain duel__vote" type="button" data-vote="b" aria-pressed="false" hidden>想看 B 的第四頁</button>
+      </div>
+      <div class="monitor">
+        <div class="monitor__body px-box">
+          <div class="monitor__screen">
+            <div class="deck" data-deck="b" data-mode="sheet" data-revealed>
+              <figure class="deck__page">
+                <article class="slide slide--bigtext">
+                  <p class="s-title">你上次買菜，<br>有把<em>長得醜的</em>挑掉嗎？</p>
+                </article>
+                <figcaption class="deck__note">你遇過嗎</figcaption>
+              </figure>
+              <figure class="deck__page">
+                <article class="slide slide--bignum">
+                  <p class="s-num">3<small>成</small></p>
+                  <p class="s-sub">的蔬菜因為長得不好看，到不了菜市場</p>
+                </article>
+                <figcaption class="deck__note">有多嚴重</figcaption>
+              </figure>
+              <figure class="deck__page">
+                <article class="slide slide--photo">
+                  <svg class="s-photo" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="清晨的產地，一整籃長歪的小黃瓜被倒進堆肥桶">
+                  <defs>
+                    <linearGradient id="dawnB" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#3E5C8A"/>
+                      <stop offset="0.5" stop-color="#D99A86"/>
+                      <stop offset="0.72" stop-color="#F6D3A0"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="1600" height="900" fill="url(#dawnB)"/>
+                  <circle cx="1240" cy="440" r="80" fill="#FFE3A3"/>
+                  <path fill="#7E9A72" d="M0 470Q200 400 420 450T860 430T1300 450T1600 420V900H0z"/>
+                  <rect y="520" width="1600" height="380" fill="#5E7F45"/>
+                  <g fill="#4C6B37">
+                    <path d="M756 520L-300 900H-190L760 520z"/><path d="M768 520L0 900H110L772 520z"/><path d="M780 520L300 900H410L784 520z"/><path d="M792 520L600 900H710L796 520z"/>
+                    <path d="M804 520L900 900H1010L808 520z"/><path d="M816 520L1200 900H1310L820 520z"/><path d="M828 520L1500 900H1610L832 520z"/><path d="M840 520L1800 900H1910L844 520z"/>
+                  </g>
+                  <rect x="960" y="510" width="320" height="40" fill="#2F4A39"/>
+                  <rect x="980" y="550" width="280" height="270" fill="#3F5F4A"/>
+                  <rect x="1050" y="630" width="140" height="56" fill="#E6D9B8"/>
+                  <rect x="300" y="610" width="440" height="200" fill="#B07A45"/>
+                  <rect x="300" y="664" width="440" height="12" fill="#8C5A2E"/>
+                  <rect x="300" y="734" width="440" height="12" fill="#8C5A2E"/>
+                  <rect x="300" y="610" width="22" height="200" fill="#8C5A2E"/>
+                  <rect x="718" y="610" width="22" height="200" fill="#8C5A2E"/>
+                  <g fill="none" stroke-linecap="round" stroke-width="34">
+                    <path stroke="#4E8F3A" d="M340 600q70-40 150-10"/>
+                    <path stroke="#6DAA4B" d="M460 592q60 30 140 0"/>
+                    <path stroke="#4E8F3A" d="M570 602q50-50 140-20"/>
+                    <path stroke="#6DAA4B" d="M380 566q90 10 160-30"/>
+                    <path stroke="#4E8F3A" d="M530 556q40 40 120 10"/>
+                    <path stroke="#6DAA4B" d="M650 572q40-30 70 10"/>
+                    <path stroke="#4E8F3A" d="M820 520q40-30 90-10"/>
+                    <path stroke="#6DAA4B" d="M880 600q30-40 80-40"/>
+                  </g>
+                </svg>
+                  <p class="s-caption">清晨的產地，長歪的小黃瓜整籃被倒掉</p>
+                </article>
+                <figcaption class="deck__note">長什麼樣</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="monitor__chin"><i class="monitor__led"></i><span>示範用，數字與畫面為虛構</span></div>
+        </div>
+        <div class="monitor__stand" aria-hidden="true"></div>
+        <div class="monitor__base" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-0-3" data-scene="0-3" data-chapter="0" data-audience="sleepy" aria-labelledby="t-0-3">
+  <div class="scene__chrome" data-tr><span class="scene__no">0-3</span></div>
+  <div class="bench" data-reasons>
+    <div class="bench__head" data-tr>
+      <h2 class="scene__title" id="t-0-3">想看下去的四個理由</h2>
+      <p class="scene__lead">同一頁投影片，四個理由一個一個打開，看觀眾的反應。接下來每一章，都在處理其中一兩個。</p>
+    </div>
+
+    <div class="bench__stage" data-tr="from-left">
+      <div class="sim" data-sim>
+        <div class="monitor">
+          <div class="monitor__body px-box">
+            <div class="monitor__screen">
+              <article class="slide slide--sim">
+                <p class="s-kicker">你家一個月的菜錢，大概花多少？</p>
+                <p class="s-heading"><span class="s-topic">訂單分析</span><span class="s-ask">回購的訂單，六成來自誰？</span></p>
+                <div class="s-dense">
+                  <ul class="s-bullets">
+                    <li>歪歪菜成立於 2022 年，產地直送格外品</li>
+                    <li>客群很廣，包含學生、上班族、家庭等</li>
+                    <li>提供葉菜、根莖類、瓜果等多種蔬菜</li>
+                    <li>買格外品可以減少浪費，對環境更友善</li>
+                    <li>近年訂單持續成長，顧客滿意度高</li>
+                    <li>夏季盛產期是最重要的時段</li>
+                    <li>未來希望持續成長，推廣惜食理念</li>
+                  </ul>
+                  <table class="s-table">
+                    <tr><th>客群</th><th>占比</th></tr>
+                    <tr><td>自己煮飯的小家庭</td><td>61%</td></tr>
+                    <tr><td>單身上班族</td><td>22%</td></tr>
+                    <tr><td>餐廳</td><td>11%</td></tr>
+                    <tr><td>學生</td><td>6%</td></tr>
+                  </table>
+                </div>
+                <div class="s-chart">
+                  <p class="s-bar is-key"><span>自己煮飯的小家庭</span><b style="--v:61">61%</b></p>
+                  <p class="s-bar"><span>單身上班族</span><b style="--v:22">22%</b></p>
+                  <p class="s-bar"><span>餐廳</span><b style="--v:11">11%</b></p>
+                  <p class="s-bar"><span>學生</span><b style="--v:6">6%</b></p>
+                  <p class="s-source">資料：歪歪菜 2026 年 6–8 月回購訂單</p>
+                </div>
+              </article>
+            </div>
+            <div class="monitor__chin"><i class="monitor__led"></i><span>第 11 頁　示範用，數字為虛構</span></div>
+          </div>
+          <div class="monitor__stand" aria-hidden="true"></div>
+          <div class="monitor__base" aria-hidden="true"></div>
+        </div>
+        <ol class="rhythm" aria-label="第 6 到第 11 頁的版型">
+          <li><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k1" x="3" y="2" width="13" height="2.4"/><rect class="k3" x="3" y="7" width="21" height="2.4"/><rect class="k2" x="3" y="10.6" width="10" height="2.4"/><rect class="k2" x="3" y="14.2" width="6" height="2.4"/></g></svg><span class="rhythm__no">6</span></li>
+          <li><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k3" x="5" y="4" width="3" height="4"/><rect class="k3" x="10" y="4" width="3" height="4"/><rect class="k1" x="5" y="10" width="22" height="2.4"/><rect class="k2" x="5" y="14" width="12" height="1.6"/></g></svg><span class="rhythm__no">7</span></li>
+          <li><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k1" x="4" y="5.5" width="24" height="3.2"/><rect class="k1" x="4" y="10.3" width="15" height="3.2"/></g></svg><span class="rhythm__no">8</span></li>
+          <li><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k1" x="2" y="7" width="7" height="5"/><rect class="k3" x="10" y="9" width="2" height="1"/><rect class="k1" x="12.5" y="7" width="7" height="5"/><rect class="k3" x="20.5" y="9" width="2" height="1"/><rect class="k1" x="23" y="7" width="7" height="5"/></g></svg><span class="rhythm__no">9</span></li>
+          <li><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k4" x="0" y="0" width="32" height="18"/><path class="k5" d="M0 18l9-8 6 5 7-7 10 10z"/></g></svg><span class="rhythm__no">10</span></li>
+          <li class="is-now" aria-current="true"><svg viewBox="0 0 32 18" aria-hidden="true"><g class="t-off"><rect class="k1" x="3" y="2" width="15" height="2.4"/><rect class="k2" x="3" y="7" width="25" height="1.6"/><rect class="k2" x="3" y="10.5" width="25" height="1.6"/><rect class="k2" x="3" y="14" width="18" height="1.6"/></g><g class="t-on"><rect class="k1" x="3" y="2" width="13" height="2.4"/><rect class="k3" x="3" y="7" width="21" height="2.4"/><rect class="k2" x="3" y="10.6" width="10" height="2.4"/><rect class="k2" x="3" y="14.2" width="6" height="2.4"/></g></svg><span class="rhythm__no">11</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="bench__controls switches" data-tr role="group" aria-label="四個理由的開關">
+      <button class="px-btn px-btn--plain switch switch--me" type="button" data-switch="me" aria-pressed="false"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-heart"/></svg>跟我有關<span class="switch__state">關</span></button>
+      <button class="px-btn px-btn--plain switch switch--curious" type="button" data-switch="curious" aria-pressed="false"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-question"/></svg>想知道答案<span class="switch__state">關</span></button>
+      <button class="px-btn px-btn--plain switch switch--easy" type="button" data-switch="easy" aria-pressed="false"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-eye"/></svg>看得不累<span class="switch__state">關</span></button>
+      <button class="px-btn px-btn--plain switch switch--vary" type="button" data-switch="vary" aria-pressed="false"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-mix"/></svg>有變化<span class="switch__state">關</span></button>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_face_excited.png" width="38" height="50" style="--w:38" alt="興奮的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="這一頁四個理由都沒做到，觀眾快睡著了。">這一頁四個理由都沒做到，觀眾快睡著了。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第 1 章 想 ========== -->
+
+<section class="level" id="lv-1" data-interlude="1" data-chapter="1" data-audience="neutral" aria-labelledby="t-lv-1">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">第 1 關</p>
+      <h2 class="level__name" id="t-lv-1">想</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>鉤子和故事線，AI 生不出來，要自己先想好。</p>
+</section>
+
+<section class="scene" id="s-1-1" data-scene="1-1" data-chapter="1" data-audience="neutral" aria-labelledby="t-1-1">
+  <div class="scene__chrome" data-tr><span class="scene__no">1-1</span></div>
+  <div class="bench bench--flip" data-oneline>
+    <div class="bench__head" data-tr>
+      <h2 class="scene__title" id="t-1-1">先寫出一句話結論</h2>
+      <p class="scene__lead">寫不出這一句，先不要開軟體。</p>
+    </div>
+
+    <form class="bench__controls oneline" data-tr action="#" onsubmit="return false">
+      <label class="oneline__field">
+        <span class="oneline__label">我們發現</span>
+        <textarea class="px-box" rows="2" data-part="find" maxlength="80" placeholder="例如：消費者不買格外品，卡在「看起來不安心」而不是價格"></textarea>
+      </label>
+      <label class="oneline__field">
+        <span class="oneline__label">所以建議</span>
+        <textarea class="px-box" rows="2" data-part="act" maxlength="80" placeholder="例如：首頁主打「省下一半菜錢」，減少浪費放在第二句"></textarea>
+      </label>
+      <div class="oneline__samples" hidden>
+        <button class="px-btn px-btn--bad" type="button" data-sample="weak">空泛的例子</button>
+        <button class="px-btn px-btn--plain" type="button" data-sample="strong">好的例子</button>
+        <button class="px-btn px-btn--plain" type="button" data-sample="clear">清空</button>
+      </div>
+    </form>
+
+    <div class="bench__stage" data-tr="from-right">
+      <div class="monitor">
+        <div class="monitor__body px-box">
+          <div class="monitor__screen">
+            <article class="slide slide--sentence">
+              <p class="s-line"><span class="s-k">我們發現</span><span class="is-empty" data-out="find">＿＿</span>，</p>
+              <p class="s-line"><span class="s-k">所以建議</span><span class="is-empty" data-out="act">＿＿</span>。</p>
+            </article>
+          </div>
+          <div class="monitor__chin"><i class="monitor__led"></i><span>研究報告也一樣：本研究發現＿＿，因此建議＿＿</span></div>
+        </div>
+        <div class="monitor__stand" aria-hidden="true"></div>
+        <div class="monitor__base" aria-hidden="true"></div>
+      </div>
+      <ul class="checks" data-checks aria-live="polite">
+        <li data-check="whole"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-cross"/></svg>發現和建議都寫完整</li>
+        <li data-check="concrete"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-cross"/></svg>有具體的對象或數字</li>
+        <li data-check="vague"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-cross"/></svg>沒有空泛的動詞<span class="checks__hint" data-hint></span></li>
+        <li data-check="contrast" class="checks__bonus"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-star"/></svg>加分：說出「不是這樣，而是那樣」的反差</li>
+      </ul>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_face_thinking.png" width="46" height="50" style="--w:46" alt="正在思考的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="先填填看，或按下面的例子，我幫你檢查。">先填填看，或按下面的例子，我幫你檢查。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-1-2" data-scene="1-2" data-chapter="1" data-audience="surprised" aria-labelledby="t-1-2">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">1-2</span>
+    <span class="reason reason--me"><svg class="picon" aria-hidden="true"><use href="#i-heart"/></svg>跟我有關</span>
+  </div>
+  <div class="hook" data-hook>
+    <div class="hook__head" data-tr>
+      <h2 class="scene__title" id="t-1-2">前 30 秒，<br>決定有沒有人聽</h2>
+      <p class="scene__lead note">同一份報告，換個開場就不一樣。點點看。</p>
+    </div>
+
+    <div class="hook__stage" data-tr="from-left">
+      <div class="hook__panel" data-hook-panel="question" data-mood="surprised" data-actor="potato_idea" data-line="開場先丟一題，大家就開始想了。">
+        <div class="monitor">
+          <div class="monitor__body px-box">
+            <div class="monitor__screen">
+              <article class="slide slide--bigtext">
+                <p class="s-title">你上次買菜，<br>有把<em>長得醜的</em>挑掉嗎？</p>
+              </article>
+            </div>
+            <div class="monitor__chin"><i class="monitor__led"></i><span>示範用，數字為虛構</span></div>
+          </div>
+          <div class="monitor__stand" aria-hidden="true"></div>
+          <div class="monitor__base" aria-hidden="true"></div>
+        </div>
+        <p class="hook__line"><b>上台第一句</b>「你上次買菜，有把長得醜的挑掉嗎？」</p>
+      </div>
+
+      <div class="hook__panel" data-hook-panel="number" data-mood="surprised" data-actor="potato_idea" data-line="一個數字，比一整段介紹好記。">
+        <div class="monitor">
+          <div class="monitor__body px-box">
+            <div class="monitor__screen">
+              <article class="slide slide--bignum">
+                <p class="s-num">3<small>成</small></p>
+                <p class="s-sub">的蔬菜因為長得不好看，到不了菜市場</p>
+              </article>
+            </div>
+            <div class="monitor__chin"><i class="monitor__led"></i><span>示範用，數字為虛構</span></div>
+          </div>
+          <div class="monitor__stand" aria-hidden="true"></div>
+          <div class="monitor__base" aria-hidden="true"></div>
+        </div>
+        <p class="hook__line"><b>上台第一句</b>「每 10 顆高麗菜，就有 3 顆因為長得不好看，到不了菜市場。」</p>
+      </div>
+
+      <div class="hook__panel" data-hook-panel="scene" data-mood="surprised" data-actor="potato_idea" data-line="先讓大家看到畫面，再講道理。">
+        <div class="monitor">
+          <div class="monitor__body px-box">
+            <div class="monitor__screen">
+              <article class="slide slide--photo">
+                <svg class="s-photo" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="清晨的產地，一整籃長歪的小黃瓜被倒進堆肥桶">
+                  <defs>
+                    <linearGradient id="dawnA" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#3E5C8A"/>
+                      <stop offset="0.5" stop-color="#D99A86"/>
+                      <stop offset="0.72" stop-color="#F6D3A0"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="1600" height="900" fill="url(#dawnA)"/>
+                  <circle cx="1240" cy="440" r="80" fill="#FFE3A3"/>
+                  <path fill="#7E9A72" d="M0 470Q200 400 420 450T860 430T1300 450T1600 420V900H0z"/>
+                  <rect y="520" width="1600" height="380" fill="#5E7F45"/>
+                  <g fill="#4C6B37">
+                    <path d="M756 520L-300 900H-190L760 520z"/><path d="M768 520L0 900H110L772 520z"/><path d="M780 520L300 900H410L784 520z"/><path d="M792 520L600 900H710L796 520z"/>
+                    <path d="M804 520L900 900H1010L808 520z"/><path d="M816 520L1200 900H1310L820 520z"/><path d="M828 520L1500 900H1610L832 520z"/><path d="M840 520L1800 900H1910L844 520z"/>
+                  </g>
+                  <rect x="960" y="510" width="320" height="40" fill="#2F4A39"/>
+                  <rect x="980" y="550" width="280" height="270" fill="#3F5F4A"/>
+                  <rect x="1050" y="630" width="140" height="56" fill="#E6D9B8"/>
+                  <rect x="300" y="610" width="440" height="200" fill="#B07A45"/>
+                  <rect x="300" y="664" width="440" height="12" fill="#8C5A2E"/>
+                  <rect x="300" y="734" width="440" height="12" fill="#8C5A2E"/>
+                  <rect x="300" y="610" width="22" height="200" fill="#8C5A2E"/>
+                  <rect x="718" y="610" width="22" height="200" fill="#8C5A2E"/>
+                  <g fill="none" stroke-linecap="round" stroke-width="34">
+                    <path stroke="#4E8F3A" d="M340 600q70-40 150-10"/>
+                    <path stroke="#6DAA4B" d="M460 592q60 30 140 0"/>
+                    <path stroke="#4E8F3A" d="M570 602q50-50 140-20"/>
+                    <path stroke="#6DAA4B" d="M380 566q90 10 160-30"/>
+                    <path stroke="#4E8F3A" d="M530 556q40 40 120 10"/>
+                    <path stroke="#6DAA4B" d="M650 572q40-30 70 10"/>
+                    <path stroke="#4E8F3A" d="M820 520q40-30 90-10"/>
+                    <path stroke="#6DAA4B" d="M880 600q30-40 80-40"/>
+                  </g>
+                </svg>
+                <p class="s-caption">一整籃長歪的小黃瓜，倒進堆肥桶</p>
+              </article>
+            </div>
+            <div class="monitor__chin"><i class="monitor__led"></i><span>示範用，數字與畫面為虛構</span></div>
+          </div>
+          <div class="monitor__stand" aria-hidden="true"></div>
+          <div class="monitor__base" aria-hidden="true"></div>
+        </div>
+        <p class="hook__line"><b>上台第一句</b>「清晨五點的產地，農民把一整籃長歪的小黃瓜，倒進了堆肥桶。」</p>
+      </div>
+
+      <div class="hook__panel" data-hook-panel="bad" data-mood="sleepy" data-actor="potato_face_thinking" data-line="唸完目錄，觀眾已經在滑手機了。">
+        <div class="monitor">
+          <div class="monitor__body px-box">
+            <div class="monitor__screen">
+              <article class="slide slide--dull">
+                <p class="s-head">歪歪菜的行銷策略分析</p>
+                <p class="s-group">第三組</p>
+                <p class="s-toc">目錄</p>
+                <ul class="s-list">
+                  <li>公司簡介</li>
+                  <li>市場分析</li>
+                  <li>SWOT 分析</li>
+                  <li>行銷策略</li>
+                  <li>結論與建議</li>
+                  <li>參考資料</li>
+                </ul>
+                <svg class="s-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l3.2 7 7.6.8-5.7 5.1 1.6 7.5L12 17.6l-6.7 3.8 1.6-7.5L1.2 8.8 8.8 8z"/></svg>
+              </article>
+            </div>
+            <div class="monitor__chin"><i class="monitor__led"></i><span>反例，請不要這樣開場</span></div>
+          </div>
+          <div class="monitor__stand" aria-hidden="true"></div>
+          <div class="monitor__base" aria-hidden="true"></div>
+        </div>
+        <p class="hook__line"><b>上台第一句</b>「大家好，我們是第三組，今天要報告的題目是歪歪菜的行銷策略分析。首先看一下目錄。」</p>
+      </div>
+    </div>
+
+    <div class="hook__tabs" data-tr role="group" aria-label="切換開場方式">
+      <button class="px-btn px-btn--plain" type="button" data-hook-tab="question" aria-pressed="true">一個問題</button>
+      <button class="px-btn px-btn--plain" type="button" data-hook-tab="number" aria-pressed="false">一個數字</button>
+      <button class="px-btn px-btn--plain" type="button" data-hook-tab="scene" aria-pressed="false">一個場景</button>
+      <button class="px-btn px-btn--bad" type="button" data-hook-tab="bad" aria-pressed="false">反例</button>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" data-hook-actor src="assets/img/mascots/1x/potato_idea.png" width="42" height="54" style="--w:42" alt="想到點子的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="開場先丟一題，大家就開始想了。">開場先丟一題，大家就開始想了。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-1-3" data-scene="1-3" data-chapter="1" data-audience="thinking" aria-labelledby="t-1-3">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">1-3</span>
+    <span class="reason reason--curious"><svg class="picon" aria-hidden="true"><use href="#i-question"/></svg>想知道答案</span>
+  </div>
+  <div class="story" data-story>
+    <div class="story__head" data-tr>
+      <h2 class="scene__title" id="t-1-3">用問題推進故事線</h2>
+      <p class="scene__lead">依序點下面的句子，排成一條故事線。每排好一句，觀眾心裡就會冒出下一個問題。</p>
+    </div>
+
+    <ol class="story__line" data-tr>
+      <li class="story__slot px-box" data-node="hook"><b class="story__node">鉤子</b><p class="story__text">你上次買菜，有把長得醜的挑掉嗎？</p></li>
+      <li class="story__slot px-box" data-node="problem"><span class="story__voice">真的耶，為什麼？</span><b class="story__node">問題</b><p class="story__text">為什麼醜蔬菜便宜又好吃，大家還是不買？</p></li>
+      <li class="story__slot px-box" data-node="belief"><span class="story__voice">是因為不夠便宜嗎？</span><b class="story__node">你以為</b><p class="story__text">你以為是因為還不夠便宜。</p></li>
+      <li class="story__slot px-box" data-node="truth"><span class="story__voice">不是嗎？那是什麼？</span><b class="story__node">其實</b><p class="story__text">其實已經便宜快一半，卡住大家的是「看起來不安心」。</p></li>
+      <li class="story__slot px-box" data-node="therefore"><span class="story__voice">那要怎麼辦？</span><b class="story__node">所以</b><p class="story__text">所以首頁主打「省下一半菜錢」，減少浪費放在第二句。</p></li>
+      <li class="story__slot px-box" data-node="takeaway"><span class="story__voice">我要記住什麼？</span><b class="story__node">帶走一句話</b><p class="story__text">先解決他的晚餐，再談地球。</p></li>
+    </ol>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_idea.png" width="42" height="54" style="--w:42" alt="想到點子的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="先找鉤子：哪一句讓人一聽就想到自己？">先找鉤子：哪一句讓人一聽就想到自己？</p>
+      </div>
+    </div>
+
+    <div class="story__pool" data-pool role="group" aria-label="還沒排進去的句子" data-tr hidden></div>
+
+    <div class="story__tools" data-tr hidden>
+      <button class="px-btn px-btn--plain" type="button" data-story-reset>重排</button>
+      <button class="px-btn px-btn--plain" type="button" data-story-solve>直接看答案</button>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-1-4" data-scene="1-4" data-chapter="1" data-audience="happy" aria-labelledby="t-1-4">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">1-4</span>
+    <span class="reason reason--curious"><svg class="picon" aria-hidden="true"><use href="#i-question"/></svg>想知道答案</span>
+  </div>
+  <div class="plan" data-plan>
+    <div class="plan__head" data-tr>
+      <h2 class="scene__title" id="t-1-4"><span data-config="minutes" data-plan-minutes>20</span> 分鐘怎麼分</h2>
+      <p class="scene__lead">一頁約一分鐘。換成你的場合和長度，看時間怎麼分。</p>
+    </div>
+
+    <div class="plan__controls" data-tr hidden>
+      <div class="plan__kinds" role="group" aria-label="報告的場合">
+        <button class="px-btn px-btn--plain" type="button" data-kind="class" aria-pressed="true">課堂報告</button>
+        <button class="px-btn px-btn--plain" type="button" data-kind="proposal" aria-pressed="false">計畫口試</button>
+        <button class="px-btn px-btn--plain" type="button" data-kind="conference" aria-pressed="false">研討會</button>
+      </div>
+      <div class="plan__steppers">
+        <div class="stepper" role="group" aria-labelledby="lbl-plan-min">
+          <span class="stepper__label" id="lbl-plan-min">分鐘</span>
+          <button class="px-btn px-btn--plain stepper__btn" type="button" data-step="minutes" data-by="-1" aria-label="少一分鐘"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output class="stepper__value" data-out="minutes">20</output>
+          <button class="px-btn px-btn--plain stepper__btn" type="button" data-step="minutes" data-by="1" aria-label="多一分鐘"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <div class="stepper" role="group" aria-labelledby="lbl-plan-pages">
+          <span class="stepper__label" id="lbl-plan-pages">頁數</span>
+          <button class="px-btn px-btn--plain stepper__btn" type="button" data-step="pages" data-by="-1" aria-label="少一頁"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output class="stepper__value" data-out="pages">20</output>
+          <button class="px-btn px-btn--plain stepper__btn" type="button" data-step="pages" data-by="1" aria-label="多一頁"><svg class="picon picon--lg" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan__bar" data-tr data-bar role="img" aria-label="鉤子 1 分鐘，問題 3 分鐘，主體 11 分鐘，結論與建議 3 分鐘，帶走一句話 1 分鐘，緩衝 1 分鐘">
+      <span class="plan__seg plan__seg--light" style="--m:1;--c:var(--orange);--i:0">1</span>
+      <span class="plan__seg" style="--m:3;--c:var(--navy);--i:1">3</span>
+      <span class="plan__seg" style="--m:11;--c:var(--green);--i:2">11</span>
+      <span class="plan__seg" style="--m:3;--c:var(--purple);--i:3">3</span>
+      <span class="plan__seg" style="--m:1;--c:var(--red);--i:4">1</span>
+      <span class="plan__seg" style="--m:1;--c:var(--muted);--i:5">1</span>
+    </div>
+
+    <ul class="plan__legend" data-legend data-tr>
+      <li><i class="plan__swatch" style="--c:var(--orange)"></i><b>鉤子</b><span class="plan__num">1 分・2 頁</span><span class="plan__tip">一個問題、數字或場景</span></li>
+      <li><i class="plan__swatch" style="--c:var(--navy)"></i><b>問題</b><span class="plan__num">3 分・3 頁</span><span class="plan__tip">讓人想知道答案</span></li>
+      <li><i class="plan__swatch" style="--c:var(--green)"></i><b>主體</b><span class="plan__num">11 分・11 頁</span><span class="plan__tip">分三段，每段一個發現</span></li>
+      <li><i class="plan__swatch" style="--c:var(--purple)"></i><b>結論與建議</b><span class="plan__num">3 分・3 頁</span><span class="plan__tip">回到一句話結論</span></li>
+      <li><i class="plan__swatch" style="--c:var(--red)"></i><b>帶走一句話</b><span class="plan__num">1 分・1 頁</span><span class="plan__tip">不要「謝謝聆聽」</span></li>
+      <li><i class="plan__swatch" style="--c:var(--muted)"></i><b>緩衝</b><span class="plan__num">1 分</span><span class="plan__tip">換人、切換畫面、意外</span></li>
+    </ul>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_run.png" width="47" height="50" style="--w:47" alt="奔跑的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="主體佔一半以上。按上面換成口試或研討會，看看差在哪。">主體佔一半以上。按上面換成口試或研討會，看看差在哪。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-1-5" data-scene="1-5" data-chapter="1" data-audience="thinking" aria-labelledby="t-1-5">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">1-5</span>
+    <span class="reason reason--curious"><svg class="picon" aria-hidden="true"><use href="#i-question"/></svg>想知道答案</span>
+  </div>
+  <div class="board" data-board data-mode="grid">
+    <div class="board__head" data-tr>
+      <h2 class="scene__title" id="t-1-5">20 格分鏡</h2>
+      <p class="scene__lead">每格只寫一句標題。只讀標題，要能讀成一個故事。</p>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_carry.png" width="47" height="50" style="--w:47" alt="搬著一疊文件的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯</p>
+        <p class="dialog__text" aria-live="polite" data-say="按「只讀標題」，再換成「只寫主題」比比看。">按「只讀標題」，再換成「只寫主題」比比看。</p>
+      </div>
+    </div>
+
+    <div class="board__tools" data-tr>
+      <div class="board__kinds" role="group" aria-label="標題的寫法" hidden>
+        <button class="px-btn px-btn--plain" type="button" data-titles="claim" aria-pressed="true">寫成主張</button>
+        <button class="px-btn px-btn--plain" type="button" data-titles="topic" aria-pressed="false">只寫主題</button>
+      </div>
+      <button class="px-btn board__read-btn" type="button" data-readthrough aria-pressed="false" hidden>只讀標題</button>
+      <button class="px-btn px-btn--plain" type="button" data-print-sheet hidden>列印學習單</button>
+    </div>
+    <ul class="board__legend" aria-label="顏色代表的段落">
+        <li class="seg--hook">鉤子</li>
+        <li class="seg--problem">問題</li>
+        <li class="seg--body">主體</li>
+        <li class="seg--close">結論與建議</li>
+        <li class="seg--takeaway">帶走一句話</li>
+        <li class="board__note">示範用，數字為虛構</li>
+      </ul>
+
+    <ol class="board__grid" data-tr>
+      <li class="cell seg--hook" data-topic="開場"><b>1</b><span>你上次買菜，有把長得醜的挑掉嗎？</span></li>
+      <li class="cell seg--hook" data-topic="背景"><b>2</b><span>3 成的蔬菜，因為長得醜到不了菜市場</span></li>
+      <li class="cell seg--problem" data-topic="問題背景"><b>3</b><span>清晨的產地，長歪的小黃瓜整籃被倒掉</span></li>
+      <li class="cell seg--problem" data-topic="研究問題"><b>4</b><span>為什麼便宜又好吃，大家還是不買？</span></li>
+      <li class="cell seg--problem" data-topic="價格比較"><b>5</b><span>漂亮的一斤 60 元，長歪的只要 35 元</span></li>
+      <li class="cell seg--body" data-topic="市場調查"><b>6</b><span>可是願意買格外品的人，只有一成五</span></li>
+      <li class="cell seg--body" data-topic="消費者訪談"><b>7</b><span>「長這樣，是不是不新鮮？」</span></li>
+      <li class="cell seg--body" data-topic="問題分析"><b>8</b><span>障礙不在價格，在「看起來不安心」</span></li>
+      <li class="cell seg--body" data-topic="服務流程"><b>9</b><span>做法：產地直送、當天分級、標上採收日</span></li>
+      <li class="cell seg--body" data-topic="案例照片"><b>10</b><span>同一批番茄，挑過的和沒挑過的</span></li>
+      <li class="cell seg--body" data-topic="訂單分析"><b>11</b><span>回購的訂單，六成來自「自己煮飯的小家庭」</span></li>
+      <li class="cell seg--body" data-topic="客群分析"><b>12</b><span>他們要的是便宜，而且不用自己挑</span></li>
+      <li class="cell seg--body" data-topic="廣告比較"><b>13</b><span>兩種廣告：講減少浪費，或講省下一半菜錢</span></li>
+      <li class="cell seg--body" data-topic="廣告成效"><b>14</b><span>講「省菜錢」的點擊率是減少浪費的兩倍</span></li>
+      <li class="cell seg--body" data-topic="環保效益"><b>15</b><span>那減少浪費要放哪裡？放在第二句</span></li>
+      <li class="cell seg--body" data-topic="環保數據"><b>16</b><span>每個月少丟 800 公斤蔬菜</span></li>
+      <li class="cell seg--close" data-topic="結論"><b>17</b><span>障礙在「不安心」，機會在「省錢又省事」</span></li>
+      <li class="cell seg--close" data-topic="建議"><b>18</b><span>建議：首頁主打省錢，結帳時再講減少浪費</span></li>
+      <li class="cell seg--close" data-topic="預期效益"><b>19</b><span>這樣做，預估回購率可以多兩成</span></li>
+      <li class="cell seg--takeaway" data-topic="謝謝聆聽"><b>20</b><span>先解決他的晚餐，再談地球</span></li>
+    </ol>
+    <p class="board__read" data-read hidden></p>
+  </div>
+</section>
+
+<section class="scene" id="s-1-6" data-scene="1-6" data-chapter="1" data-audience="neutral" aria-labelledby="t-1-6">
+  <div class="scene__chrome" data-tr><span class="scene__no">1-6</span></div>
+  <div class="pack" data-pack>
+    <div class="pack__head" data-tr>
+      <h2 class="scene__title" id="t-1-6">出發前，背包裡的三樣東西</h2>
+      <p class="scene__lead">每樣先問自己一題，答得出來再裝進背包。</p>
+    </div>
+
+    <div class="dialog" data-tr>
+      <div class="dialog__who">
+        <img class="sprite" src="assets/img/mascots/1x/potato_idea.png" width="42" height="54" style="--w:42" alt="想到點子的馬鈴薯">
+      </div>
+      <div class="dialog__box px-box">
+        <p class="dialog__name">馬鈴薯　<span class="pack__count">背包 <b data-pack-count>0/3</b></span></p>
+        <p class="dialog__text" aria-live="polite" data-say="三樣都裝好，再打開 AI 工具。它才知道要幫你做什麼。">三樣都裝好，再打開 AI 工具。它才知道要幫你做什麼。</p>
+      </div>
+    </div>
+
+    <ol class="pack__items" data-tr>
+      <li class="item px-box">
+        <h3 class="item__name"><svg class="picon item__icon" aria-hidden="true"><use href="#i-quote"/></svg>一句話結論</h3>
+        <p class="item__mine" data-mine="line">我們發現消費者不買格外品，卡在「看起來不安心」而不是價格，所以建議首頁主打「省下一半菜錢」，減少浪費放在第二句。</p>
+        <p class="item__ask">有人可能反對嗎？沒有人會反對的結論，通常太空泛。</p>
+        <button class="px-btn px-btn--plain item__pack" type="button" data-pack-item="line" aria-pressed="false" hidden>裝進背包</button>
+      </li>
+      <li class="item px-box">
+        <h3 class="item__name"><svg class="picon item__icon" aria-hidden="true"><use href="#i-hook"/></svg>一個鉤子</h3>
+        <p class="item__mine" data-mine="hook">「你上次買菜，有把長得醜的挑掉嗎？」</p>
+        <p class="item__ask">鉤子和結論講的是同一件事嗎？</p>
+        <button class="px-btn px-btn--plain item__pack" type="button" data-pack-item="hook" aria-pressed="false" hidden>裝進背包</button>
+      </li>
+      <li class="item px-box">
+        <h3 class="item__name"><svg class="picon item__icon" aria-hidden="true"><use href="#i-film"/></svg>20 句標題</h3>
+        <p class="item__mine" data-mine="titles">每一頁一句主張，按順序排好。</p>
+        <p class="item__ask">只讀標題，像不像一個故事？</p>
+        <button class="px-btn px-btn--plain item__pack" type="button" data-pack-item="titles" aria-pressed="false" hidden>裝進背包</button>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== 第 2 章 生 ========== -->
+
+<section class="level" id="lv-2" data-interlude="2" data-chapter="2" data-audience="neutral" aria-labelledby="t-lv-2">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">第 2 關</p>
+      <h2 class="level__name" id="t-lv-2">生</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>選對工具，給 AI 好的輸入。</p>
+</section>
+
+<section class="scene" id="s-2-1" data-scene="2-1" data-chapter="2" data-audience="neutral" aria-labelledby="t-2-1">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-1</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_work.png" width="43" height="50" style="--w:43" alt="坐在筆電前工作的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-1">工具分三類</h2>
+      <p data-tr>生內容、讀你的資料、做設計。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-2-2" data-scene="2-2" data-chapter="2" data-audience="neutral" aria-labelledby="t-2-2">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-2</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/octo_neutral.png" width="52" height="50" style="--w:52" alt="蝴蝶章魚">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-2">五張工具卡片</h2>
+      <p data-tr>定位、適合時機、要小心什麼、匯出格式、免費能做到哪裡。每張都標資料日期。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-2-3" data-scene="2-3" data-chapter="2" data-audience="sad" aria-labelledby="t-2-3">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-3</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/octo_sad.png" width="51" height="50" style="--w:51" alt="難過的蝴蝶章魚">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-3">給 AI 的六件事</h2>
+      <p data-tr>結論、聽眾與場合、大綱、資料、規格、不要什麼。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-2-4" data-scene="2-4" data-chapter="2" data-audience="neutral" aria-labelledby="t-2-4">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-4</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/octo_thinking.png" width="55" height="50" style="--w:55" alt="正在思考的蝴蝶章魚">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-4">分兩階段下指令</h2>
+      <p data-tr>先只要大綱，自己改完，再請它生成整份。這裡會放指令產生器。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-2-5" data-scene="2-5" data-chapter="2" data-audience="neutral" aria-labelledby="t-2-5">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-5</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/octo_happy.png" width="53" height="50" style="--w:53" alt="開心的蝴蝶章魚">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-5">同一份輸入，丟給三個工具</h2>
+      <p data-tr>三張截圖並排，標出做得好的地方和要自己修的地方。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-2-6" data-scene="2-6" data-chapter="2" data-audience="cry" aria-labelledby="t-2-6">
+  <div class="scene__chrome" data-tr><span class="scene__no">2-6</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_police.png" width="39" height="50" style="--w:39" alt="穿警察制服的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-2-6">AI 初稿的三個通病</h2>
+      <p data-tr>標題是主題、每頁太滿、每頁長得一樣。AI 給的數字，一律回到原始出處查。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第 3 章 修 ========== -->
+
+<section class="level" id="lv-3" data-interlude="3" data-chapter="3" data-audience="sleepy" aria-labelledby="t-lv-3">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">第 3 關</p>
+      <h2 class="level__name" id="t-lv-3">修</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>把 AI 的初稿，修到讓人想看。</p>
+</section>
+
+<section class="scene" id="s-3-0" data-scene="3-0" data-chapter="3" data-audience="sleepy" aria-labelledby="t-3-0">
+  <div class="scene__chrome" data-tr><span class="scene__no">3-0</span></div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-0">AI 初稿原樣</h2>
+      <p data-tr>主題式標題、七條列點、一張表格、四種顏色。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-1" data-scene="3-1" data-chapter="3" data-audience="speechless" aria-labelledby="t-3-1">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-1</span>
+    <span class="reason reason--curious"><svg class="picon" aria-hidden="true"><use href="#i-question"/></svg>想知道答案</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-1">修標題</h2>
+      <p data-tr>「歪歪菜訂單分析」換成一句完整的結論。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-2" data-scene="3-2" data-chapter="3" data-audience="neutral" aria-labelledby="t-3-2">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-2</span>
+    <span class="reason reason--easy"><svg class="picon" aria-hidden="true"><use href="#i-eye"/></svg>看得不累</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-2">刪字</h2>
+      <p data-tr>七條列點刪到三條。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-3" data-scene="3-3" data-chapter="3" data-audience="thinking" aria-labelledby="t-3-3">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-3</span>
+    <span class="reason reason--easy"><svg class="picon" aria-hidden="true"><use href="#i-eye"/></svg>看得不累</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-3">字</h2>
+      <p data-tr>內文放大，字型減到一種，標題和內文拉開層級。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-4" data-scene="3-4" data-chapter="3" data-audience="happy" aria-labelledby="t-3-4">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-4</span>
+    <span class="reason reason--easy"><svg class="picon" aria-hidden="true"><use href="#i-eye"/></svg>看得不累</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-4">色</h2>
+      <p data-tr>四種顏色收成主色、輔色、強調色。這裡可以點色票換配色。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-5" data-scene="3-5" data-chapter="3" data-audience="thinking" aria-labelledby="t-3-5">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-5</span>
+    <span class="reason reason--easy"><svg class="picon" aria-hidden="true"><use href="#i-eye"/></svg>看得不累</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-5">齊</h2>
+      <p data-tr>浮出對齊線，元素靠齊，留白變多。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-6" data-scene="3-6" data-chapter="3" data-audience="surprised" aria-labelledby="t-3-6">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-6</span>
+    <span class="reason reason--easy"><svg class="picon" aria-hidden="true"><use href="#i-eye"/></svg>看得不累</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-6">圖</h2>
+      <p data-tr>表格變成長條圖，只有重點那一根上色。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-7" data-scene="3-7" data-chapter="3" data-audience="happy" aria-labelledby="t-3-7">
+  <div class="scene__chrome" data-tr><span class="scene__no">3-7</span></div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-7">出處</h2>
+      <p data-tr>圖表下方補上來源與日期。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-8" data-scene="3-8" data-chapter="3" data-audience="surprised" aria-labelledby="t-3-8">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">3-8</span>
+    <span class="reason reason--vary"><svg class="picon" aria-hidden="true"><use href="#i-mix"/></svg>有變化</span>
+  </div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/crab_water.png" width="109" height="50" style="--w:109" alt="澆水的寄居蟹">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-8">節奏</h2>
+      <p data-tr>20 頁的縮圖列，逐一換成不同頁型。連續三頁不要同一種頁型。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-9" data-scene="3-9" data-chapter="3" data-audience="love" aria-labelledby="t-3-9">
+  <div class="scene__chrome" data-tr><span class="scene__no">3-9</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/crab_potato.png" width="64" height="58" style="--w:64" alt="寄居蟹和馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-9">完成</h2>
+      <p data-tr>前後對比，可以拖拉分隔線。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-3-10" data-scene="3-10" data-chapter="3" data-audience="happy" aria-labelledby="t-3-10">
+  <div class="scene__chrome" data-tr><span class="scene__no">3-10</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_thumbs.png" width="42" height="50" style="--w:42" alt="比讚的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-3-10">修改指令小抄</h2>
+      <p data-tr>前面用過的指令收成一張清單，全部可複製，再加四條原則。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第 4 章 看 ========== -->
+
+<section class="level" id="lv-4" data-interlude="4" data-chapter="4" data-audience="happy" aria-labelledby="t-lv-4">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">第 4 關</p>
+      <h2 class="level__name" id="t-lv-4">看</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>七種頁型，和一份完整的示範。</p>
+</section>
+
+<section class="scene" id="s-4-1" data-scene="4-1" data-chapter="4" data-audience="happy" aria-labelledby="t-4-1">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">4-1</span>
+    <span class="reason reason--vary"><svg class="picon" aria-hidden="true"><use href="#i-mix"/></svg>有變化</span>
+  </div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_cheer.png" width="38" height="50" style="--w:38" alt="歡呼的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-4-1">七種頁型</h2>
+      <p data-tr>大字、大數字、照片、圖表、對比、引言、流程。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-4-2" data-scene="4-2" data-chapter="4" data-audience="surprised" aria-labelledby="t-4-2">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">4-2</span>
+    <span class="reason reason--vary"><svg class="picon" aria-hidden="true"><use href="#i-mix"/></svg>有變化</span>
+  </div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_cheer.png" width="38" height="50" style="--w:38" alt="歡呼的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-4-2">一份 20 頁的完整示範</h2>
+      <p data-tr>20 頁排成縮圖牆，點任一頁放大。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-4-3" data-scene="4-3" data-chapter="4" data-audience="happy" aria-labelledby="t-4-3">
+  <div class="scene__chrome" data-tr>
+    <span class="scene__no">4-3</span>
+    <span class="reason reason--vary"><svg class="picon" aria-hidden="true"><use href="#i-mix"/></svg>有變化</span>
+  </div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_cheer.png" width="38" height="50" style="--w:38" alt="歡呼的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-4-3">一頁只用一種頁型</h2>
+      <p data-tr>一份簡報可以混用頁型，但一頁只用一種。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第 5 章 講 ========== -->
+
+<section class="level" id="lv-5" data-interlude="5" data-chapter="5" data-audience="neutral" aria-labelledby="t-lv-5">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">第 5 關</p>
+      <h2 class="level__name" id="t-lv-5">講</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>上台 <span data-config="minutes">20</span> 分鐘怎麼過。</p>
+</section>
+
+<section class="scene" id="s-5-1" data-scene="5-1" data-chapter="5" data-audience="neutral" aria-labelledby="t-5-1">
+  <div class="scene__chrome" data-tr><span class="scene__no">5-1</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_face_nervous.png" width="40" height="50" style="--w:40" alt="緊張的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-5-1">分工</h2>
+      <p data-tr>換人講的地方，剛好是換節奏的地方。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-5-2" data-scene="5-2" data-chapter="5" data-audience="sleepy" aria-labelledby="t-5-2">
+  <div class="scene__chrome" data-tr><span class="scene__no">5-2</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_face_nervous.png" width="40" height="50" style="--w:40" alt="緊張的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-5-2">不要唸投影片</h2>
+      <p data-tr>投影片是給觀眾看的，稿子放在備忘稿。前 30 秒背起來，眼睛看人。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-5-3" data-scene="5-3" data-chapter="5" data-audience="thinking" aria-labelledby="t-5-3">
+  <div class="scene__chrome" data-tr><span class="scene__no">5-3</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_run.png" width="47" height="50" style="--w:47" alt="奔跑的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-5-3">時間與問答</h2>
+      <p data-tr>先標好哪兩頁可以跳。最後一頁停在「帶走一句話」。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-5-4" data-scene="5-4" data-chapter="5" data-audience="happy" aria-labelledby="t-5-4">
+  <div class="scene__chrome" data-tr><span class="scene__no">5-4</span></div>
+  <div class="stub">
+    <img class="sprite" data-tr="hop" src="assets/img/mascots/1x/potato_face_cool.png" width="38" height="50" style="--w:38" alt="戴墨鏡的馬鈴薯">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-5-4">設備</h2>
+      <p data-tr>帶 PDF 備份，確認字型、連結、影片，提早 5 分鐘試投影。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第 6 章 檢查表 ========== -->
+
+<section class="level" id="lv-6" data-interlude="6" data-chapter="6" data-audience="happy" aria-labelledby="t-lv-6">
+  <i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i><i class="level__cloud" aria-hidden="true" data-tr="from-right"></i>
+  <div class="level__flight" data-tr="fly">
+    <img class="sprite level__whale" src="assets/img/mascots/1x/whale_fly.png" width="73" height="54" style="--w:73" alt="天使鯨魚叼著關卡牌飛進來">
+    <span class="level__rope" aria-hidden="true"></span>
+    <div class="level__card px-box">
+      <p class="level__no">最後任務</p>
+      <h2 class="level__name" id="t-lv-6">檢查</h2>
+    </div>
+  </div>
+  <p class="level__goal" data-tr>交件前，確認十件事。</p>
+</section>
+
+<section class="scene" id="s-6-1" data-scene="6-1" data-chapter="6" data-audience="love" aria-labelledby="t-6-1">
+  <div class="scene__chrome" data-tr><span class="scene__no">6-1</span></div>
+  <div class="stub">
+    <img class="sprite sprite--wide" data-tr="hop" src="assets/img/mascots/1x/team_table.png" width="149" height="62" style="--w:149" alt="五隻吉祥物圍著桌子開會">
+    <div class="stub__body">
+      <p class="stub__tag" data-tr>施工中</p>
+      <h2 class="scene__title" data-tr id="t-6-1">交件前檢查表</h2>
+      <p data-tr>十題勾選，可以列印成一張 A4。全部勾完就通關。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<aside class="audience" id="audience" aria-label="觀眾的反應">
+  <p class="audience__label">觀眾：<b id="audienceMood">平常</b></p>
+  <div class="audience__pad">
+    <img class="sprite" id="audienceSprite" src="assets/img/mascots/1x/manta_neutral.png" width="66" height="21" style="--w:66" alt="表情平常的魟魚">
+  </div>
+</aside>
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/journey.js"></script>
+<script src="assets/js/transition.js"></script>
+<script src="assets/js/mascots.js"></script>
+<script src="assets/js/feedback.js"></script>
+<script src="assets/js/widgets.js"></script>
+</body>
+</html>

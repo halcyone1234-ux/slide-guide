@@ -1,0 +1,173 @@
+/* 轉場：翻頁時馬鈴薯旅行的風景，以及每一張內容的進場動畫。 */
+
+/* 風景蓋住場景，HUD 和觀眾魟魚留在上面 */
+.wipe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* 內容平常都看得到，確定要播動畫時才先藏起還沒走到的場景 */
+@media screen {
+  html.tr-on :is([data-scene], [data-interlude]):not(.is-in) [data-tr] {
+    opacity: 0;
+  }
+}
+
+/* 依序進場：--tr-i 是這一張裡的第幾個元素 */
+[data-tr] {
+  --tr-name: tr-rise;
+  --tr-time: 0.32s;
+  --tr-steps: 4;
+  --tr-wait: 80ms;
+}
+
+[data-tr="hop"] {
+  --tr-name: tr-hop;
+  --tr-time: 0.44s;
+  --tr-steps: 3;
+}
+
+[data-tr="drop"] {
+  --tr-name: tr-drop;
+  --tr-time: 0.56s;
+  --tr-steps: 4;
+}
+
+[data-tr="from-left"] {
+  --tr-name: tr-from-left;
+  --tr-time: 0.36s;
+}
+
+[data-tr="from-right"] {
+  --tr-name: tr-from-right;
+  --tr-time: 0.48s;
+  --tr-steps: 6;
+}
+
+[data-tr="lamp"] {
+  --tr-name: tr-lamp;
+  --tr-time: 0.5s;
+  --tr-steps: 1;
+}
+
+/* 鯨魚叼著關卡牌橫向飛進來，分段移動 */
+[data-tr="fly"] {
+  --tr-name: fly-in;
+  --tr-time: 0.9s;
+  --tr-steps: 10;
+  --tr-wait: -140ms;
+}
+
+/* 等鯨魚飛到才出現 */
+.level__goal[data-tr] {
+  --tr-wait: 640ms;
+}
+
+html.tr-on .is-in [data-tr] {
+  animation: var(--tr-name) var(--tr-time) steps(var(--tr-steps), end) calc(var(--tr-wait) + var(--tr-i, 0) * 70ms) backwards;
+}
+
+/* 首頁主角落地後接著待機的上下跳 */
+html.tr-on .is-in .hero__actor .sprite[data-tr] {
+  animation:
+    bob 1s linear infinite,
+    var(--tr-name) var(--tr-time) steps(var(--tr-steps), end) calc(var(--tr-wait) + var(--tr-i, 0) * 70ms) backwards;
+}
+
+/* 切換示範投影片：像舊電視換台，從中間一條線打開 */
+html.tr-on .hook__panel:not([hidden]) .slide {
+  animation: tr-channel 0.28s steps(4, end) backwards;
+}
+
+@keyframes tr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * 6));
+  }
+}
+
+@keyframes tr-hop {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * 10));
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(calc(var(--px) * -3));
+  }
+}
+
+@keyframes tr-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * -30));
+  }
+
+  70% {
+    opacity: 1;
+    transform: none;
+  }
+
+  85% {
+    transform: translateY(calc(var(--px) * -2));
+  }
+}
+
+@keyframes tr-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--px) * -12));
+  }
+}
+
+@keyframes tr-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--px) * 16));
+  }
+}
+
+/* 舞台燈閃兩下才亮 */
+@keyframes tr-lamp {
+  0%,
+  39% {
+    opacity: 0;
+  }
+
+  40%,
+  59% {
+    opacity: 1;
+  }
+
+  60%,
+  79% {
+    opacity: 0;
+  }
+
+  80%,
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 起點剛好在畫面左邊外面，一開始飛就看得到 */
+@keyframes fly-in {
+  from {
+    transform: translateX(calc(-50vw - 100%));
+  }
+}
+
+@keyframes tr-channel {
+  from {
+    clip-path: inset(50% 0);
+  }
+
+  to {
+    clip-path: inset(0);
+  }
+}

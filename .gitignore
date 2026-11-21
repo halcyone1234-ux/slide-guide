@@ -1,0 +1,8 @@
+# 系統和同步軟體產生的檔案
+.DS_Store
+Thumbs.db
+desktop.ini
+.dropbox
+.dropbox.attr
+~$*
+*.tmp

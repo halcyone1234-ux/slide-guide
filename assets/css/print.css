@@ -1,0 +1,103 @@
+/* 列印樣式：平常印網頁時藏起介面；按「列印分鏡學習單」時只印學習單。檢查表的列印會在後面加入。 */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+.sheet {
+  display: none;
+}
+
+@media print {
+  .hud,
+  .audience,
+  .skip,
+  .wipe {
+    display: none !important;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html.print-sheet,
+  html.print-sheet body {
+    background: #FFFFFF;
+  }
+
+  html.print-sheet body > * {
+    display: none !important;
+  }
+
+  html.print-sheet body > .sheet {
+    display: block !important;
+  }
+}
+
+/* 分鏡學習單：一張 A4，四欄五列 */
+.sheet {
+  color: #000000;
+  font-family: var(--font-body);
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+.sheet__title {
+  font-family: var(--font-pixel);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.sheet__fields {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 6mm;
+  margin-top: 4mm;
+}
+
+.sheet__fields p,
+.sheet__thesis {
+  padding-bottom: 1.5mm;
+  border-bottom: 0.3mm solid #000000;
+}
+
+.sheet__thesis {
+  margin-top: 4mm;
+}
+
+.sheet__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4mm 3mm;
+  margin-top: 5mm;
+}
+
+.sheet__frame {
+  break-inside: avoid;
+}
+
+.sheet__frame header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8pt;
+}
+
+.sheet__box {
+  margin-top: 1mm;
+  border: 0.3mm solid #000000;
+  aspect-ratio: 16 / 9;
+}
+
+.sheet__line {
+  height: 6.5mm;
+  border-bottom: 0.2mm solid #777777;
+  color: #444444;
+  font-size: 7.5pt;
+}
+
+.sheet__foot {
+  margin-top: 4mm;
+  font-size: 9pt;
+}

@@ -1,0 +1,254 @@
+/* 版面概念：像素遊戲的 HUD 加上全螢幕關卡；示範投影片放在像素螢幕裡，維持一般簡報的樣子。 */
+
+@font-face {
+  font-family: "Cubic 11";
+  src: url("../fonts/Cubic_11.woff2") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  /* 像素單位：邊框、陰影、間距都用它的整數倍 */
+  --px: 4px;
+
+  /* 規格第 7 節的色票 */
+  --navy: #16324F;
+  --green: #2E7D6B;
+  --orange: #F2A541;
+  --paper: #EEF4F1;
+  --ink: #1E2A32;
+  --red: #C0392B;
+  --line: #3A2A22;
+  --white: #FFFFFF;
+
+  /* 規格的次要文字 #6B7A85、綠 #2E7D6B 放在淺底上對比不足 4.5:1，文字改用加深版 */
+  --muted: #566570;
+  --green-text: #25695A;
+
+  /* 由色票延伸的深淺 */
+  --navy-deep: #0F2438;
+  --navy-soft: #1F4468;
+  --green-deep: #256757;
+  --green-soft: #3B8F7C;
+  --orange-soft: #F7C27C;
+  --paper-deep: #E1EBE6;
+  --cream: #FFF9EC;
+  --mist: #D8E6E0;
+  --purple: #6A4C8C;
+
+  --font-pixel: "Cubic 11", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+
+  /* 像素字級：Cubic 11 的方格是 12 等分，只用 12 的倍數才不會糊 */
+  --t-s: 24px;
+  --t-m: 36px;
+  --t-l: 48px;
+  --t-xl: 72px;
+  --t-xxl: 96px;
+
+  --title: var(--t-l);
+  --body: clamp(16px, 0.5vw + 13px, 20px);
+
+  --hud-h: 64px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --page: 1248px;
+
+  /* 吉祥物放大倍率，只用整數 */
+  --scale: 4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--body);
+  line-height: 1.7;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: var(--px) solid var(--orange);
+  outline-offset: var(--px);
+}
+
+section:focus {
+  outline: none;
+}
+
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: var(--orange);
+  color: var(--navy);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.say-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 場景的共用骨架 */
+.scene,
+.level {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--hud-h);
+}
+
+.scene {
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' shape-rendering='crispEdges'%3E%3Crect width='4' height='4' fill='%23E1EBE6'/%3E%3C/svg%3E");
+}
+
+.scene__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  max-width: var(--page);
+  min-height: 48px;
+  margin-inline: auto;
+  padding-top: 12px;
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+
+.scene__no {
+  color: var(--muted);
+  font-family: var(--font-pixel);
+  font-size: var(--t-s);
+  line-height: 1;
+}
+
+.scene__title {
+  color: var(--navy);
+  font-family: var(--font-pixel);
+  font-size: var(--title);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.scene__lead {
+  color: var(--ink);
+  max-width: 34em;
+}
+
+/* 投影模式：字級放大、隱藏補充說明小字 */
+html[data-present] {
+  --body: max(3vh, 20px);
+  --scale: 6;
+}
+
+html[data-present] .note {
+  display: none;
+}
+
+@media (min-height: 900px) {
+  html[data-present] {
+    --title: var(--t-xl);
+  }
+}
+
+@media (min-height: 1300px) {
+  html[data-present] {
+    --title: var(--t-xxl);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --title: var(--t-m);
+    --scale: 3;
+    --hud-h: 60px;
+  }
+
+  html[data-present] {
+    --scale: 3;
+    --title: var(--t-m);
+  }
+}
+
+/* 待機：上下跳一個像素單位，用分段式時間函式 */
+@keyframes bob {
+  0%,
+  49.9% {
+    transform: translateY(0);
+  }
+
+  50%,
+  100% {
+    transform: translateY(calc(var(--px) * -1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

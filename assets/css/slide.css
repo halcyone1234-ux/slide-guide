@@ -1,0 +1,315 @@
+/* 投影片元件：固定 16:9，字級用容器寬度的相對單位，放大縮小都不跑版。
+ * 示範投影片不套像素風，照一般簡報的乾淨樣子做。
+ * 投影片本身的內距用百分比（等於投影片寬度的比例）；cqw 只能用在投影片裡面的元素。 */
+
+.slide {
+  --s-main: #16324F;
+  --s-sub: #2E7D6B;
+  --s-accent: #F2A541;
+  --s-bg: #FFFFFF;
+  --s-text: #1E2A32;
+
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  container-type: inline-size;
+  background: var(--s-bg);
+  color: var(--s-text);
+  font-family: var(--font-body);
+  line-height: 1.35;
+}
+
+/* 大字頁 */
+.slide--bigtext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 9%;
+}
+
+.slide--bigtext .s-title {
+  color: var(--s-main);
+  font-size: 7.6cqw;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.slide--bigtext em {
+  color: var(--s-main);
+  font-style: normal;
+  box-shadow: inset 0 -0.34em 0 var(--s-accent);
+}
+
+/* 大數字頁 */
+.slide--bignum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 9%;
+  background: var(--s-main);
+  color: #FFFFFF;
+}
+
+.slide--bignum .s-num {
+  color: var(--s-accent);
+  font-size: 29cqw;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.slide--bignum .s-num small {
+  margin-left: 1.5cqw;
+  font-size: 7cqw;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.slide--bignum .s-sub {
+  margin-top: 3cqw;
+  font-size: 5.2cqw;
+  font-weight: 500;
+}
+
+/* 照片頁：一張圖加一行字 */
+.slide--photo .s-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide--photo .s-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2cqw 5cqw 2.2cqw;
+  background: rgba(15, 36, 56, 0.86);
+  color: #FFFFFF;
+  font-size: 4.2cqw;
+  font-weight: 700;
+}
+
+/* 反例：唸目錄的封面 */
+.slide--dull {
+  display: flex;
+  flex-direction: column;
+  padding: 3.5% 6%;
+  background: #FFFFFF;
+  color: #333333;
+  font-family: "Times New Roman", "PMingLiU", "MingLiU", serif;
+}
+
+.slide--dull .s-head {
+  padding-bottom: 1.2cqw;
+  border-bottom: 0.5cqw solid #2F5597;
+  color: #2F5597;
+  font-size: 3.6cqw;
+  font-weight: 700;
+  text-align: center;
+}
+
+.slide--dull .s-group {
+  margin-top: 0.8cqw;
+  color: #7F7F7F;
+  font-size: 2cqw;
+  text-align: center;
+}
+
+.slide--dull .s-toc {
+  margin-top: 1.6cqw;
+  color: #C00000;
+  font-size: 3cqw;
+  font-weight: 700;
+}
+
+.slide--dull .s-list {
+  margin-top: 0.6cqw;
+  padding-left: 3.5cqw;
+  font-size: 2.45cqw;
+  line-height: 1.5;
+  list-style: disc;
+}
+
+.slide--dull .s-star {
+  position: absolute;
+  right: 6cqw;
+  bottom: 5cqw;
+  width: 15cqw;
+  height: 15cqw;
+  fill: #7030A0;
+}
+
+/* 反例的封面與滿版文字頁 */
+.slide--dull.slide--cover {
+  justify-content: center;
+}
+
+.slide--cover .s-head {
+  font-size: 5cqw;
+}
+
+.slide--cover .s-group {
+  margin-top: 2cqw;
+  font-size: 3cqw;
+}
+
+.slide--wall .s-wall {
+  margin-top: 1.2cqw;
+  font-size: 2.7cqw;
+  line-height: 1.65;
+  text-align: justify;
+}
+
+/* 一句話結論 */
+.slide--sentence {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 7%;
+}
+
+.slide--sentence .s-line + .s-line {
+  margin-top: 2.4cqw;
+}
+
+.slide--sentence .s-line {
+  color: var(--s-main);
+  font-size: clamp(2.8cqw, calc(6.2cqw - var(--len, 0) * 0.045cqw), 4.8cqw);
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.slide--sentence .s-k {
+  margin-right: 0.8cqw;
+  color: var(--s-sub);
+}
+
+.slide--sentence .is-empty {
+  color: #566570;
+  font-weight: 400;
+}
+
+/* 四個理由的示範頁：每個開關改一個地方 */
+.slide--sim {
+  display: flex;
+  flex-direction: column;
+  padding: 4.5% 6% 3.5%;
+}
+
+.slide--sim > * + * {
+  margin-top: 1.8cqw;
+}
+
+.slide--sim .s-kicker {
+  display: none;
+  color: var(--s-sub);
+  font-size: 3.4cqw;
+  font-weight: 700;
+}
+
+.slide--sim .s-heading {
+  color: var(--s-main);
+  font-size: 4cqw;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.slide--sim .s-ask {
+  display: none;
+}
+
+.slide--sim .s-dense {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 2.4cqw;
+  font-size: 2.3cqw;
+  line-height: 1.5;
+}
+
+.slide--sim .s-bullets {
+  padding-left: 2.6cqw;
+  list-style: disc;
+}
+
+.slide--sim .s-table {
+  align-self: start;
+  border-collapse: collapse;
+  font-size: 2.1cqw;
+}
+
+.slide--sim .s-table th,
+.slide--sim .s-table td {
+  padding: 0.5cqw 0.9cqw;
+  border: 0.2cqw solid #9AA5AD;
+  text-align: left;
+}
+
+.slide--sim .s-chart {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6cqw;
+}
+
+.slide--sim .s-bar {
+  display: grid;
+  grid-template-columns: 27cqw minmax(0, 1fr);
+  align-items: center;
+  gap: 1.8cqw;
+  font-size: 2.9cqw;
+}
+
+.slide--sim .s-bar b {
+  display: block;
+  width: calc(var(--v) * 1%);
+  min-width: 7cqw;
+  padding: 0.6cqw 1cqw;
+  background: #C9D2D8;
+  font-size: 2.7cqw;
+  text-align: right;
+}
+
+.slide--sim .s-bar.is-key span {
+  color: var(--s-main);
+  font-weight: 900;
+}
+
+.slide--sim .s-bar.is-key b {
+  background: var(--s-accent);
+  color: var(--s-main);
+}
+
+.slide--sim .s-source {
+  margin-top: 0.6cqw;
+  color: #566570;
+  font-size: 2cqw;
+}
+
+.sim[data-me] .s-kicker {
+  display: block;
+}
+
+.sim[data-curious] .s-heading {
+  font-size: 5.4cqw;
+  font-weight: 900;
+}
+
+.sim[data-curious] .s-topic {
+  display: none;
+}
+
+.sim[data-curious] .s-ask {
+  display: inline;
+}
+
+.sim[data-easy] .s-dense {
+  display: none;
+}
+
+.sim[data-easy] .s-chart {
+  display: flex;
+}

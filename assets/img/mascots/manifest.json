@@ -1,0 +1,330 @@
+[
+ {
+  "name": "potato_work",
+  "label": "工作中",
+  "mascot": "馬鈴薯",
+  "w": 43,
+  "h": 50,
+  "file": "1x/potato_work.png"
+ },
+ {
+  "name": "potato_present",
+  "label": "簡報中",
+  "mascot": "馬鈴薯",
+  "w": 36,
+  "h": 50,
+  "file": "1x/potato_present.png"
+ },
+ {
+  "name": "potato_carry",
+  "label": "搬文件",
+  "mascot": "馬鈴薯",
+  "w": 47,
+  "h": 50,
+  "file": "1x/potato_carry.png"
+ },
+ {
+  "name": "potato_shrug",
+  "label": "聳肩",
+  "mascot": "馬鈴薯",
+  "w": 44,
+  "h": 50,
+  "file": "1x/potato_shrug.png"
+ },
+ {
+  "name": "potato_thumbs",
+  "label": "讚",
+  "mascot": "馬鈴薯",
+  "w": 42,
+  "h": 50,
+  "file": "1x/potato_thumbs.png"
+ },
+ {
+  "name": "potato_cheer",
+  "label": "歡呼",
+  "mascot": "馬鈴薯",
+  "w": 38,
+  "h": 50,
+  "file": "1x/potato_cheer.png"
+ },
+ {
+  "name": "potato_run",
+  "label": "奔跑",
+  "mascot": "馬鈴薯",
+  "w": 47,
+  "h": 50,
+  "file": "1x/potato_run.png"
+ },
+ {
+  "name": "potato_sleep",
+  "label": "睡覺",
+  "mascot": "馬鈴薯",
+  "w": 41,
+  "h": 50,
+  "file": "1x/potato_sleep.png"
+ },
+ {
+  "name": "potato_face_happy",
+  "label": "開心",
+  "mascot": "馬鈴薯",
+  "w": 40,
+  "h": 50,
+  "file": "1x/potato_face_happy.png"
+ },
+ {
+  "name": "potato_face_nervous",
+  "label": "緊張",
+  "mascot": "馬鈴薯",
+  "w": 40,
+  "h": 50,
+  "file": "1x/potato_face_nervous.png"
+ },
+ {
+  "name": "potato_face_overwhelmed",
+  "label": "招架不住",
+  "mascot": "馬鈴薯",
+  "w": 40,
+  "h": 50,
+  "file": "1x/potato_face_overwhelmed.png"
+ },
+ {
+  "name": "potato_face_thinking",
+  "label": "思考",
+  "mascot": "馬鈴薯",
+  "w": 46,
+  "h": 50,
+  "file": "1x/potato_face_thinking.png"
+ },
+ {
+  "name": "potato_face_cool",
+  "label": "酷",
+  "mascot": "馬鈴薯",
+  "w": 38,
+  "h": 50,
+  "file": "1x/potato_face_cool.png"
+ },
+ {
+  "name": "potato_face_sad",
+  "label": "難過",
+  "mascot": "馬鈴薯",
+  "w": 39,
+  "h": 50,
+  "file": "1x/potato_face_sad.png"
+ },
+ {
+  "name": "potato_face_angry",
+  "label": "生氣",
+  "mascot": "馬鈴薯",
+  "w": 39,
+  "h": 50,
+  "file": "1x/potato_face_angry.png"
+ },
+ {
+  "name": "potato_face_excited",
+  "label": "興奮",
+  "mascot": "馬鈴薯",
+  "w": 38,
+  "h": 50,
+  "file": "1x/potato_face_excited.png"
+ },
+ {
+  "name": "potato_idea",
+  "label": "有點子",
+  "mascot": "馬鈴薯",
+  "w": 42,
+  "h": 54,
+  "file": "1x/potato_idea.png"
+ },
+ {
+  "name": "potato_police",
+  "label": "警察（查證）",
+  "mascot": "馬鈴薯",
+  "w": 39,
+  "h": 50,
+  "file": "1x/potato_police.png"
+ },
+ {
+  "name": "potato_thief",
+  "label": "小偷（亂編）",
+  "mascot": "馬鈴薯",
+  "w": 41,
+  "h": 50,
+  "file": "1x/potato_thief.png"
+ },
+ {
+  "name": "octo_neutral",
+  "label": "平常",
+  "mascot": "蝴蝶章魚",
+  "w": 52,
+  "h": 50,
+  "file": "1x/octo_neutral.png"
+ },
+ {
+  "name": "octo_happy",
+  "label": "開心",
+  "mascot": "蝴蝶章魚",
+  "w": 53,
+  "h": 50,
+  "file": "1x/octo_happy.png"
+ },
+ {
+  "name": "octo_excited",
+  "label": "興奮",
+  "mascot": "蝴蝶章魚",
+  "w": 55,
+  "h": 50,
+  "file": "1x/octo_excited.png"
+ },
+ {
+  "name": "octo_love",
+  "label": "喜歡",
+  "mascot": "蝴蝶章魚",
+  "w": 52,
+  "h": 50,
+  "file": "1x/octo_love.png"
+ },
+ {
+  "name": "octo_sleepy",
+  "label": "想睡",
+  "mascot": "蝴蝶章魚",
+  "w": 49,
+  "h": 50,
+  "file": "1x/octo_sleepy.png"
+ },
+ {
+  "name": "octo_surprised",
+  "label": "驚訝",
+  "mascot": "蝴蝶章魚",
+  "w": 49,
+  "h": 50,
+  "file": "1x/octo_surprised.png"
+ },
+ {
+  "name": "octo_sad",
+  "label": "難過",
+  "mascot": "蝴蝶章魚",
+  "w": 51,
+  "h": 50,
+  "file": "1x/octo_sad.png"
+ },
+ {
+  "name": "octo_thinking",
+  "label": "思考",
+  "mascot": "蝴蝶章魚",
+  "w": 55,
+  "h": 50,
+  "file": "1x/octo_thinking.png"
+ },
+ {
+  "name": "octo_write",
+  "label": "寫字",
+  "mascot": "蝴蝶章魚",
+  "w": 61,
+  "h": 62,
+  "file": "1x/octo_write.png"
+ },
+ {
+  "name": "manta_neutral",
+  "label": "平常",
+  "mascot": "魟魚",
+  "w": 66,
+  "h": 21,
+  "file": "1x/manta_neutral.png"
+ },
+ {
+  "name": "manta_happy",
+  "label": "開心",
+  "mascot": "魟魚",
+  "w": 65,
+  "h": 24,
+  "file": "1x/manta_happy.png"
+ },
+ {
+  "name": "manta_love",
+  "label": "好喜歡",
+  "mascot": "魟魚",
+  "w": 66,
+  "h": 31,
+  "file": "1x/manta_love.png"
+ },
+ {
+  "name": "manta_sleepy",
+  "label": "想睡",
+  "mascot": "魟魚",
+  "w": 66,
+  "h": 25,
+  "file": "1x/manta_sleepy.png"
+ },
+ {
+  "name": "manta_surprised",
+  "label": "驚訝",
+  "mascot": "魟魚",
+  "w": 66,
+  "h": 31,
+  "file": "1x/manta_surprised.png"
+ },
+ {
+  "name": "manta_speechless",
+  "label": "無言",
+  "mascot": "魟魚",
+  "w": 67,
+  "h": 21,
+  "file": "1x/manta_speechless.png"
+ },
+ {
+  "name": "manta_sad",
+  "label": "難過",
+  "mascot": "魟魚",
+  "w": 67,
+  "h": 23,
+  "file": "1x/manta_sad.png"
+ },
+ {
+  "name": "manta_cry",
+  "label": "哭哭",
+  "mascot": "魟魚",
+  "w": 67,
+  "h": 23,
+  "file": "1x/manta_cry.png"
+ },
+ {
+  "name": "manta_thinking",
+  "label": "想一想",
+  "mascot": "魟魚",
+  "w": 66,
+  "h": 26,
+  "file": "1x/manta_thinking.png"
+ },
+ {
+  "name": "whale_fly",
+  "label": "飛行",
+  "mascot": "天使鯨魚",
+  "w": 73,
+  "h": 54,
+  "file": "1x/whale_fly.png"
+ },
+ {
+  "name": "crab_water",
+  "label": "澆水",
+  "mascot": "寄居蟹",
+  "w": 109,
+  "h": 50,
+  "file": "1x/crab_water.png"
+ },
+ {
+  "name": "crab_potato",
+  "label": "和馬鈴薯",
+  "mascot": "寄居蟹",
+  "w": 64,
+  "h": 58,
+  "file": "1x/crab_potato.png"
+ },
+ {
+  "name": "team_table",
+  "label": "全員開會",
+  "mascot": "全員",
+  "w": 149,
+  "h": 62,
+  "file": "1x/team_table.png"
+ }
+]
