@@ -140,38 +140,7 @@
     }, stop);
   }
 
-  /* ===== 0-3 四個理由的開關 ===== */
-  function initReasons() {
-    var root = document.querySelector('[data-reasons]');
-    if (!root) { return; }
-    var scene = sceneOf(root);
-    var sim = root.querySelector('[data-sim]');
-    var switches = all(root, '[data-switch]');
-    var MOODS = ['sleepy', 'neutral', 'thinking', 'happy', 'love'];
-    /* 打開時說出背後的道理，關掉時說觀眾會怎樣。 */
-    var SAY = {
-      me: ['注意力有限，人會先處理跟自己有關的事。第一句就讓他對號入座。', '少了這句，他不知道為什麼要聽。'],
-      curious: ['知道自己還不知道，就會想補上。標題留一個問題，他就會等答案。', '標題又變回名詞，沒有東西要等了。'],
-      easy: ['工作記憶一次只裝得下幾件事。一頁只講一件事，重點只標一個。', '字又塞滿了，他不知道先看哪裡。'],
-      vary: ['同樣的畫面看久了，注意力會鈍掉。換個頁型，等於說新東西來了。', '又連續六頁長一樣，他開始滑手機。']
-    };
-
-    switches.forEach(function (sw) {
-      sw.addEventListener('click', function () {
-        var key = sw.getAttribute('data-switch');
-        var on = !isPressed(sw);
-        sw.setAttribute('aria-pressed', on ? 'true' : 'false');
-        sw.querySelector('.switch__state').textContent = on ? '開' : '關';
-        if (on) { sim.setAttribute('data-' + key, ''); } else { sim.removeAttribute('data-' + key); }
-        var count = switches.filter(isPressed).length;
-        setMood(scene, MOODS[count]);
-        speak(scene, count === 4 ? '四個都到位，觀眾就想看下去了。接下來每一章，就是在練這四件事。' : SAY[key][on ? 0 : 1]);
-        if (count === 4 && window.Feedback) { window.Feedback.party(); }
-      });
-    });
-  }
-
-  /* ===== 1-1 一句話結論 ===== */
+  /* ===== 4-2 一句話結論 ===== */
   function initOneLine() {
     var root = document.querySelector('[data-oneline]');
     if (!root) { return; }
@@ -184,11 +153,11 @@
     all(root, '[data-check]').forEach(function (li) { checks[li.getAttribute('data-check')] = li; });
 
     var VAGUE = ['提升', '加強', '強化', '優化', '促進', '推廣', '重視', '落實', '改善', '增進', '積極', '致力'];
-    var CONCRETE = /[0-9０-９]|[一二三四五六七八九十兩半]成|倍|％|%|一半|多數|少數|族|客群|學生|家庭|小家庭|上班|農民|長輩|餐廳|格外品|蔬菜|高麗菜|番茄|旺季|颱風|當天|每週|每月|首頁|結帳/;
-    var CONTRAST = /不是|而是|反而|卡在|其實|只有|竟然|不在/;
+    var CONCRETE = /[0-9０-９]|[一二三四五六七八九十兩半]成|倍|％|%|一半|多數|少數|族|客群|學生|家庭|上班|農民|長輩|餐廳|市集|會員|辦卡|每次|每週|每月|加購|旺季|當天|首頁|結帳/;
+    var CONTRAST = /不是|而是|反而|卡在|其實|只有|竟然|不在|但|卻|沒有變|沒變/;
     var SAMPLES = {
-      weak: { find: '消費者越來越重視環保', act: '加強環保宣傳，提升品牌形象' },
-      strong: { find: '消費者不買格外品，卡在「看起來不安心」而不是價格', act: '首頁主打「省下一半菜錢」，減少浪費放在第二句' },
+      weak: { find: '集點卡對顧客有正向影響', act: '加強推廣集點卡，提升顧客忠誠度' },
+      strong: { find: '辦卡的客人每月多來 3 次，但每次花的錢沒有變', act: '集點卡搭配加購優惠，讓常來的人多帶一樣' },
       clear: { find: '', act: '' }
     };
     var MOODS = ['sleepy', 'neutral', 'thinking', 'happy', 'love'];
@@ -278,7 +247,7 @@
     });
   }
 
-  /* ===== 1-2 鉤子切換：沒有 JavaScript 時四種開場全部列出 ===== */
+  /* ===== 4-3 鉤子切換：沒有 JavaScript 時四種開場全部列出 ===== */
   function initHookSwitch() {
     var root = document.querySelector('[data-hook]');
     if (!root) { return; }
@@ -308,7 +277,7 @@
       }
 
       if (talk) {
-        /* 1-6 的背包會帶走最後選的鉤子，反例不算。 */
+        /* 4-8 的背包會帶走最後選的鉤子，反例不算。 */
         if (name !== 'bad') { store.set('hook', name); }
         window.Mascots.refreshMood();
         line.setAttribute('data-said', '');
@@ -323,7 +292,7 @@
     show(tabs[0].getAttribute('data-hook-tab'), false);
   }
 
-  /* ===== 1-3 把六句話排成故事線 ===== */
+  /* ===== 4-4 把六句話排成故事線 ===== */
   function initStoryline() {
     var root = document.querySelector('[data-story]');
     if (!root) { return; }
@@ -334,7 +303,7 @@
     /* 打亂後的順序固定，每次上課看到的都一樣。 */
     var SHUFFLE = [3, 0, 5, 2, 4, 1];
     var HINT = {
-      hook: '第一格是鉤子：哪一句讓人一聽就想到自己？',
+      hook: '第一格是鉤子：哪一句讓人一聽就想知道答案？',
       problem: '鉤子之後，要把好奇變成一個問題。',
       belief: '接著說出大家「以為」的答案。',
       truth: '然後翻轉：「其實」才是真正的原因。',
@@ -410,16 +379,20 @@
     });
   }
 
-  /* ===== 1-4 時間怎麼分 ===== */
+  /* ===== 4-5 時間怎麼分 ===== */
   function initTimeline() {
     var root = document.querySelector('[data-plan]');
     if (!root) { return; }
     var scene = sceneOf(root);
     var config = window.SiteConfig;
     var COLOR = {
+      open: 'var(--orange)', known: 'var(--navy-soft)', way: 'var(--purple)', result: 'var(--green)',
+      discuss: 'var(--green-deep)', conclude: 'var(--red)',
       hook: 'var(--orange)', problem: 'var(--navy)', question: 'var(--navy)', lit: 'var(--navy-soft)',
       method: 'var(--navy)', body: 'var(--green)', close: 'var(--purple)', takeaway: 'var(--red)', buffer: 'var(--muted)'
     };
+    /* 淺色的段落用深色字 */
+    var LIGHT = { open: true, hook: true };
     /* 比例是建議的起點；口試和研討會多留緩衝，因為常被打斷或準時喊停。 */
     var KINDS = {
       'class': { minutes: config.minutes, pages: config.pages, segments: config.segments },
@@ -468,7 +441,7 @@
       plan.forEach(function (seg, i) {
         var color = COLOR[seg.id] || 'var(--muted)';
         var piece = document.createElement('span');
-        piece.className = 'plan__seg' + (seg.id === 'hook' ? ' plan__seg--light' : '');
+        piece.className = 'plan__seg' + (LIGHT[seg.id] ? ' plan__seg--light' : '');
         piece.style.setProperty('--m', String(Math.max(seg.minutes, 0.5)));
         piece.style.setProperty('--c', color);
         piece.style.setProperty('--i', String(i));
@@ -540,7 +513,7 @@
     render(false);
   }
 
-  /* ===== 1-5 20 格分鏡：只讀標題、主張和主題比一比、列印學習單 ===== */
+  /* ===== 4-6 20 格分鏡：只讀標題、主張和主題比一比、列印學習單 ===== */
   function initStoryboard() {
     var root = document.querySelector('[data-board]');
     if (!root) { return; }
@@ -669,7 +642,7 @@
     window.print();
   }
 
-  /* ===== 1-6 出發前的背包 ===== */
+  /* ===== 4-8 出發前的背包 ===== */
   function initBackpack() {
     var root = document.querySelector('[data-pack]');
     if (!root) { return; }
@@ -691,7 +664,7 @@
       }
       root.querySelector('[data-mine="titles"]').textContent = store.get('readthrough', false)
         ? '用「只讀標題」讀過一遍了，像一個故事。'
-        : '還沒用「只讀標題」讀過，回 1-5 試一次。';
+        : '還沒用「只讀標題」讀過，回 4-6 試一次。';
     }
 
     function render(talk, key) {
@@ -711,7 +684,7 @@
       if (!talk) { return; }
       if (ready) {
         if (window.Feedback) { window.Feedback.party(); }
-        speak(scene, '都裝好了。出發去第 2 關：生！');
+        speak(scene, '都裝好了。出發去第 5 關：生！');
       } else {
         speak(scene, packed[key] ? NAMES[key] + '，裝好了。' : NAMES[key] + '先拿出來，再想一想。');
       }
@@ -732,7 +705,6 @@
   }
 
   initDuel();
-  initReasons();
   initOneLine();
   initHookSwitch();
   initStoryline();

@@ -8,16 +8,16 @@
   var DEFAULTS = { course: '', minutes: 20, pages: 20, group: '2–3' };
   var LIMITS = { minutes: [5, 90], pages: [5, 60] };
 
-  /* 時間軸各段的比例。
-   * time 是時間比例（規格 6.4）。
-   * page 是頁數比例：緩衝不佔頁，它的 5% 配給鉤子，預設才會是 2、3、11、3、1 頁（規格 1-4）。 */
+  /* 一份報告的七塊（講義「報告內容」）。time 是時間比例，page 是頁數比例；
+   * 一頁大約一分鐘，所以 20 分鐘的預設是 2、3、2、2、7、2、2 分鐘，頁數也一樣。 */
   var SEGMENTS = [
-    { id: 'hook', name: '鉤子', time: 5, page: 10, tip: '一個問題、數字或場景' },
-    { id: 'problem', name: '問題', time: 15, page: 15, tip: '讓人想知道答案' },
-    { id: 'body', name: '主體', time: 55, page: 55, tip: '分三段，每段一個發現' },
-    { id: 'close', name: '結論與建議', time: 15, page: 15, tip: '回到一句話結論' },
-    { id: 'takeaway', name: '帶走一句話', time: 5, page: 5, tip: '不要「謝謝聆聽」' },
-    { id: 'buffer', name: '緩衝', time: 5, page: 0, tip: '換人、切換畫面、意外' }
+    { id: 'open', name: '開場', time: 2, page: 2, tip: '先講一句話的結論' },
+    { id: 'problem', name: '問題', time: 3, page: 3, tip: '想回答什麼？為什麼重要' },
+    { id: 'known', name: '已知', time: 2, page: 2, tip: '別人做過什麼、還缺什麼' },
+    { id: 'way', name: '方法', time: 2, page: 2, tip: '資料哪裡來、怎麼分析' },
+    { id: 'result', name: '結果', time: 7, page: 7, tip: '一頁一個發現' },
+    { id: 'discuss', name: '討論', time: 2, page: 2, tip: '為什麼會這樣、有什麼限制' },
+    { id: 'conclude', name: '結論', time: 2, page: 2, tip: '建議和要記住的一句' }
   ];
 
   /* 最大餘數法：依比例分配整數，總和一定等於 total。 */
@@ -42,7 +42,7 @@
     return out;
   }
 
-  /* segments 省略時用課堂報告的配比；1-4 的其他場合也用同一套算法。 */
+  /* segments 省略時用課堂報告的配比；4-5 的其他場合也用同一套算法。 */
   function buildTimeline(minutes, pages, segments) {
     var list = segments || SEGMENTS;
     /* 時間以半分鐘為單位分配，顯示時不會出現 0.75 分這種數字。 */

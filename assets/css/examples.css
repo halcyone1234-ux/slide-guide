@@ -1,0 +1,1562 @@
+/* 講義的示範投影片：三好三壞、研究結果頁的五個步驟、學術報告四種頁面、AI 的大綱與初稿、後排測試。
+ * 尺寸照 960×540 pt 的投影片換算：--u 是 1 pt，只能用在投影片裡面的元素。
+ * 元素位置用百分比（左右是寬度的比例、上下是高度的比例），和真的投影片一樣固定。 */
+
+/* 每張投影片自成一層，裡面的 z-index 不會蓋到別張（例如前後對照的兩張疊在一起時）。 */
+.slide {
+  --u: calc(100cqw / 960);
+  isolation: isolate;
+}
+
+.ex > *,
+.rslide > *,
+.ai-draft > * {
+  position: absolute;
+}
+
+/* ===== 壞 1：讀書會公告 ===== */
+.ex-b1 {
+  background: #FFFFFF;
+  color: #262626;
+}
+
+.b1-top,
+.b1-foot {
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 3%;
+}
+
+.b1-top {
+  top: 0;
+  height: 8%;
+  background: #C55A11;
+  color: #FFFFFF;
+  font-size: calc(var(--u) * 14);
+}
+
+.b1-en {
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+.b1-title {
+  top: 11.5%;
+  left: 0;
+  width: 100%;
+  color: #843C0C;
+  font-size: calc(var(--u) * 30);
+  font-weight: 700;
+  text-align: center;
+}
+
+.b1-list {
+  top: 23%;
+  left: 7%;
+  width: 78%;
+  font-size: calc(var(--u) * 16);
+  line-height: 1.5;
+}
+
+.b1-list li {
+  position: relative;
+  margin-bottom: calc(var(--u) * 5);
+  padding-left: 1.2em;
+}
+
+.b1-list li::before {
+  content: "●";
+  position: absolute;
+  top: 0.12em;
+  left: 0;
+  color: #C55A11;
+  font-size: 0.8em;
+}
+
+.b1-sub {
+  display: block;
+  padding-left: 2.4em;
+}
+
+.b1-badge {
+  right: 4%;
+  bottom: 13%;
+  width: 9%;
+}
+
+.b1-foot {
+  bottom: 0;
+  height: 7%;
+  background: #F8CBAD;
+  color: #7A3208;
+  font-size: calc(var(--u) * 12);
+}
+
+/* ===== 好 1 ===== */
+.ex-g1 {
+  background: #FFFFFF;
+  color: #1E2A32;
+}
+
+.ex-g1 > * {
+  left: 7%;
+}
+
+.g1-title {
+  top: 9%;
+  width: 86%;
+  color: #16324F;
+  font-size: calc(var(--u) * 36);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.g1-title em {
+  font-style: normal;
+  box-shadow: inset 0 -0.32em 0 #F2A541;
+}
+
+.g1-sub {
+  top: 22%;
+  color: #3A4750;
+  font-size: calc(var(--u) * 19);
+}
+
+.g1-label {
+  top: 33%;
+  color: #25695A;
+  font-size: calc(var(--u) * 16);
+  font-weight: 700;
+}
+
+.g1-steps,
+.g1-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4%;
+  width: 86%;
+  margin: 0;
+}
+
+.g1-steps {
+  top: 39%;
+}
+
+.g1-steps li {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 14) calc(var(--u) * 16);
+  border: calc(var(--u) * 2.5) solid #16324F;
+}
+
+.g1-steps li + li::before {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  color: #F2A541;
+  font-size: calc(var(--u) * 18);
+  transform: translateY(-50%);
+}
+
+.g1-steps b {
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 30);
+  border-radius: 50%;
+  background: #16324F;
+  color: #FFFFFF;
+  font-size: calc(var(--u) * 17);
+}
+
+.g1-steps strong {
+  color: #16324F;
+  font-size: calc(var(--u) * 22);
+  font-weight: 900;
+}
+
+.g1-steps span {
+  color: #3A4750;
+  font-size: calc(var(--u) * 14);
+}
+
+.g1-info {
+  top: 69%;
+}
+
+.g1-info dt {
+  color: #566570;
+  font-size: calc(var(--u) * 13);
+  font-weight: 700;
+}
+
+.g1-info dd {
+  margin: 0;
+  font-size: calc(var(--u) * 16);
+  line-height: 1.4;
+}
+
+.g1-foot {
+  top: 89%;
+  color: #566570;
+  font-size: calc(var(--u) * 13);
+}
+
+/* ===== 壞 2：迎新場地 ===== */
+.ex-b2 {
+  background: linear-gradient(#FFFDF2, #FCEFD0);
+  color: #262626;
+}
+
+.b2-title {
+  top: 4%;
+  left: 0;
+  width: 100%;
+  color: #C00000;
+  font-size: calc(var(--u) * 30);
+  font-weight: 900;
+  text-align: center;
+  text-shadow: calc(var(--u) * 2) calc(var(--u) * 2) 0 #FFD966;
+}
+
+.b2-icon {
+  top: 3.5%;
+  width: 7%;
+}
+
+.b2-icon--l {
+  left: 9%;
+}
+
+.b2-icon--r {
+  right: 9%;
+}
+
+.b2-sub {
+  top: 15%;
+  left: 0;
+  width: 100%;
+  color: #7F7F7F;
+  font-size: calc(var(--u) * 12);
+  text-align: center;
+}
+
+.b2-boxes {
+  top: 25%;
+  left: 5%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3.5%;
+  width: 90%;
+  height: 52%;
+}
+
+.b2-box {
+  position: relative;
+  padding: calc(var(--u) * 12) calc(var(--u) * 14);
+  color: #FFFFFF;
+  font-size: calc(var(--u) * 13);
+  line-height: 1.45;
+  box-shadow: calc(var(--u) * 5) calc(var(--u) * 5) 0 rgba(0, 0, 0, 0.25);
+}
+
+.b2-box--a { background: #7030A0; }
+.b2-box--b { background: #D4A72C; }
+.b2-box--c { background: #2E75B6; }
+
+.b2-badge {
+  position: absolute;
+  top: calc(var(--u) * -18);
+  right: calc(var(--u) * -14);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 60);
+  height: calc(var(--u) * 60);
+  background: #FF0000;
+  color: #FFFF00;
+  font-size: calc(var(--u) * 12);
+  font-weight: 900;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transform: rotate(12deg);
+}
+
+.b2-pic {
+  width: calc(var(--u) * 36);
+  height: calc(var(--u) * 36);
+  margin: 0 auto calc(var(--u) * 4);
+  padding: calc(var(--u) * 5);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.b2-name {
+  font-size: calc(var(--u) * 17);
+  font-weight: 900;
+  text-align: center;
+}
+
+.b2-place {
+  margin-bottom: calc(var(--u) * 6);
+  font-size: calc(var(--u) * 14);
+  text-align: center;
+}
+
+.b2-note {
+  bottom: 12%;
+  left: 0;
+  width: 100%;
+  color: #C00000;
+  font-size: calc(var(--u) * 12);
+  font-weight: 700;
+  text-align: center;
+}
+
+.b2-fine {
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  color: #A6A6A6;
+  font-size: calc(var(--u) * 10);
+  text-align: center;
+}
+
+/* ===== 好 2 ===== */
+.ex-g2 {
+  background: #FFFFFF;
+  color: #1E2A32;
+}
+
+.ex-g2 > * {
+  left: 6%;
+  width: 88%;
+}
+
+.g2-title {
+  top: 9%;
+  color: #16324F;
+  font-size: calc(var(--u) * 32);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.g2-sub {
+  top: 21%;
+  color: #566570;
+  font-size: calc(var(--u) * 17);
+}
+
+.g2-table {
+  top: 32%;
+  border-collapse: collapse;
+  font-size: calc(var(--u) * 17);
+  line-height: 1.35;
+}
+
+.g2-table th,
+.g2-table td {
+  padding: calc(var(--u) * 11) calc(var(--u) * 12);
+  border-bottom: calc(var(--u) * 1.5) solid #D5DCE1;
+  text-align: left;
+}
+
+.g2-table thead th {
+  color: #3A4750;
+  font-size: calc(var(--u) * 15);
+  vertical-align: bottom;
+}
+
+.g2-table tbody th {
+  color: #566570;
+  font-size: calc(var(--u) * 15);
+  white-space: nowrap;
+}
+
+.g2-table td {
+  color: #3A4750;
+}
+
+.g2-table .is-pick {
+  background: #FDEBD3;
+  color: #16324F;
+  font-weight: 900;
+}
+
+.g2-tag {
+  display: block;
+  width: max-content;
+  margin-bottom: calc(var(--u) * 4);
+  padding: 0 calc(var(--u) * 8);
+  background: #F2A541;
+  color: #16324F;
+  font-size: calc(var(--u) * 12);
+}
+
+/* ===== 壞 3：社團人數 ===== */
+.ex-b3 {
+  background: #DEEBF7;
+  color: #404040;
+}
+
+.b3-title {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 13%;
+  padding: 0 4%;
+  background: #9DC3E6;
+  color: #FFFFFF;
+  font-size: calc(var(--u) * 26);
+  font-weight: 700;
+}
+
+.b3-chart {
+  top: 16%;
+  left: 3%;
+  width: 62%;
+}
+
+.b3-chart svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.b3-grid line {
+  stroke: #C5D9EE;
+  stroke-width: 1;
+}
+
+.b3-y text,
+.b3-x text,
+.b3-unit {
+  fill: #8497B0;
+  font-size: 11px;
+}
+
+.b3-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 calc(var(--u) * 12);
+  color: #7F7F7F;
+  font-size: calc(var(--u) * 10);
+}
+
+.b3-legend i {
+  display: inline-block;
+  width: calc(var(--u) * 14);
+  height: calc(var(--u) * 3);
+  margin-right: calc(var(--u) * 4);
+  vertical-align: middle;
+}
+
+.b3-cap {
+  margin-top: calc(var(--u) * 4);
+  color: #595959;
+  font-size: calc(var(--u) * 11);
+  text-align: center;
+}
+
+.b3-src {
+  color: #7F7F7F;
+  font-size: calc(var(--u) * 9);
+  text-align: right;
+}
+
+.b3-notes {
+  top: 17%;
+  right: 3%;
+  width: 31%;
+  font-size: calc(var(--u) * 12);
+  line-height: 1.6;
+}
+
+.b3-notes p + p {
+  margin-top: calc(var(--u) * 6);
+}
+
+.b3-notes p:first-child {
+  font-weight: 700;
+}
+
+/* ===== 好 3 ===== */
+.ex-g3 {
+  background: #FFFFFF;
+}
+
+.ex-g3 > * {
+  left: 6%;
+}
+
+.g3-title {
+  top: 8%;
+  width: 88%;
+  color: #16324F;
+  font-size: calc(var(--u) * 32);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.g3-chart {
+  top: 23%;
+  width: 78%;
+  height: auto;
+  overflow: visible;
+}
+
+.g3-end {
+  fill: #566570;
+  font-size: 15px;
+}
+
+.g3-key {
+  fill: #A35F00;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.g3-start {
+  fill: #A35F00;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.g3-x text {
+  fill: #566570;
+  font-size: 15px;
+}
+
+.g3-src {
+  bottom: 5%;
+  color: #566570;
+  font-size: calc(var(--u) * 13);
+}
+
+/* ===== 研究結果頁：五件事一步一步改（data-step 0–5） =====
+ * 0 原版　1 排版（只動位置）　2 配色（只換顏色）　3 密度（只拿走）　4 字級（放大）　5 焦點 */
+.rslide {
+  --cat: calc(var(--u) * 22);
+  background: #FFFFFF;
+  color: #262626;
+}
+
+/* 標題：原版是置中的藍色標題列，下面一條橘線 */
+.r-title {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 11.5%;
+  padding: 0 4.1667%;
+  background: #2F5597;
+  color: #FFFFFF;
+  font-size: calc(var(--u) * 30);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.rslide[data-step="0"] .r-title {
+  justify-content: center;
+}
+
+.rslide[data-step="0"] .r-title::after,
+.rslide[data-step="1"] .r-title::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--u) * -4);
+  left: 0;
+  height: calc(var(--u) * 4);
+  background: #ED7D31;
+}
+
+.r-claim {
+  display: none;
+}
+
+/* 表 */
+.r-table {
+  top: 16.296%;
+  left: 4.1667%;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 5);
+  width: 44.792%;
+  height: 39.259%;
+  margin: 0;
+}
+
+.r-table figcaption,
+.r-cap {
+  font-size: calc(var(--u) * 12);
+  font-weight: 700;
+}
+
+.r-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(var(--u) * 12.5);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.r-table th,
+.r-table td {
+  padding: calc(var(--u) * 3) calc(var(--u) * 2);
+  border: calc(var(--u) * 1) solid #595959;
+}
+
+.r-table th {
+  background: #FFD966;
+  font-weight: 700;
+}
+
+.r-table td:first-child {
+  background: #A9D18E;
+}
+
+/* 圖 */
+.r-chart {
+  top: 16.296%;
+  left: 51.042%;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 6);
+  width: 44.792%;
+  height: 39.259%;
+  margin: 0;
+}
+
+.r-plot {
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-columns: calc(var(--u) * 20) minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: calc(var(--u) * 8);
+  min-height: 0;
+}
+
+.r-plot::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: var(--cat);
+  left: calc(var(--u) * 28);
+  border-top: calc(var(--u) * 1) solid #D9D9D9;
+  background: repeating-linear-gradient(to top, #BFBFBF 0 calc(var(--u) * 1), transparent calc(var(--u) * 1) calc(100% / 7));
+}
+
+.r-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: calc(var(--u) * -6) 0 calc(var(--cat) - var(--u) * 6);
+  color: #595959;
+  font-size: calc(var(--u) * 11.5);
+  line-height: 1;
+  text-align: right;
+}
+
+.r-group {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) var(--cat);
+  column-gap: 8%;
+  padding: 0 12%;
+}
+
+/* 長條的顏色畫在 ::before，數字和標籤（在長條上下方的白底上）才不會被當成疊在長條上 */
+.r-bar {
+  position: relative;
+  align-self: end;
+  height: calc(var(--v) / 7 * 100%);
+  font-style: normal;
+}
+
+.r-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bar);
+}
+
+.r-bar--1 { --bar: #4472C4; }
+.r-bar--2 { --bar: #ED7D31; }
+.r-bar--3 { --bar: #A5A5A5; }
+.r-bar--4 { --bar: #FFC000; }
+
+.r-bar b,
+.r-bl,
+.r-up,
+.r-flat {
+  position: absolute;
+  left: 50%;
+  display: none;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.r-bar b {
+  bottom: 100%;
+  margin-bottom: calc(var(--u) * 4);
+  color: #16324F;
+  font-size: calc(var(--u) * 22);
+  line-height: 1;
+}
+
+.r-bl {
+  top: 100%;
+  margin-top: calc(var(--u) * 6);
+  color: #566570;
+  font-size: calc(var(--u) * 16);
+  font-style: normal;
+  line-height: 1;
+}
+
+.r-up,
+.r-flat {
+  bottom: 100%;
+  margin-bottom: calc(var(--u) * 34);
+  font-size: calc(var(--u) * 20);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.r-up { color: #A35F00; }
+.r-flat { color: #566570; }
+
+.r-gl {
+  grid-column: 1 / -1;
+  align-self: start;
+  padding-top: calc(var(--u) * 4);
+  color: #404040;
+  font-size: calc(var(--u) * 11.5);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.r-gl-b {
+  display: none;
+}
+
+.r-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 calc(var(--u) * 12);
+  color: #404040;
+  font-size: calc(var(--u) * 11.5);
+  line-height: 1.3;
+}
+
+.r-legend i {
+  display: inline-block;
+  width: calc(var(--u) * 10);
+  height: calc(var(--u) * 10);
+  margin-right: calc(var(--u) * 4);
+  background: var(--bar);
+  vertical-align: -0.05em;
+}
+
+.r-l1 { --bar: #4472C4; }
+.r-l2 { --bar: #ED7D31; }
+.r-l3 { --bar: #A5A5A5; }
+.r-l4 { --bar: #FFC000; }
+
+.r-legend b {
+  font-weight: 400;
+}
+
+/* 五句話：原版是黃色底框、藍字、紅字、底線 */
+.r-text {
+  top: 58.519%;
+  left: 4.1667%;
+  display: grid;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  width: 91.667%;
+  height: 34.074%;
+  padding: calc(var(--u) * 8) calc(var(--u) * 14);
+  border: calc(var(--u) * 1) solid #BF9000;
+  background: #FFF2CC;
+  font-size: calc(var(--u) * 13);
+  line-height: 1.3;
+}
+
+.r-text li {
+  position: relative;
+  padding-left: 1em;
+}
+
+.r-text li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+}
+
+.r-text li:nth-child(2) { color: #0B5394; }
+.r-text li:nth-child(3) { color: #C00000; font-weight: 700; }
+.r-text li:nth-child(5) { text-decoration: underline; }
+
+.r-moved,
+.r-source,
+.r-lines {
+  display: none;
+}
+
+/* 0 原版：位置對不齊，圖的標題在圖的下面 */
+.rslide[data-step="0"] .r-table {
+  top: 15.556%;
+  left: 4.79%;
+  width: 43.33%;
+  height: 37.037%;
+}
+
+.rslide[data-step="0"] .r-chart {
+  top: 17.778%;
+  left: 51.667%;
+  width: 45.417%;
+  height: 39.63%;
+}
+
+.rslide[data-step="0"] .r-cap {
+  order: 3;
+  text-align: center;
+}
+
+.rslide[data-step="0"] .r-text {
+  top: 59.63%;
+  left: 2.917%;
+  width: 93.333%;
+  height: 36.296%;
+}
+
+/* 2 以後：一個主色，其餘用灰 */
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-title {
+  background: transparent;
+  color: #16324F;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-table th {
+  background: #EEF1F3;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-table td:first-child {
+  background: transparent;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-table th,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-table td {
+  border-color: #C9D2D8;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-bar--1,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-bar--3,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-l1 {
+  --bar: #AEB8C0;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-bar--2,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-bar--4,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-l2 {
+  --bar: #16324F;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-l3,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-l4,
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-legend b {
+  display: none;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-text {
+  border-color: transparent;
+  background: transparent;
+  color: #3A4750;
+}
+
+.rslide:not([data-step="0"]):not([data-step="1"]) .r-text li {
+  color: #3A4750;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+/* 3 密度：只拿走，留下的不動；虛線框是原本東西的位置 */
+.rslide[data-step="3"] .r-table,
+.rslide[data-step="3"] .r-text li:not(.r-key) {
+  visibility: hidden;
+}
+
+.rslide[data-step="3"] .r-moved {
+  left: 4.1667%;
+  display: grid;
+  place-items: center;
+  width: 91.667%;
+  border: calc(var(--u) * 1.5) dashed #9AA5AD;
+  color: #566570;
+  font-size: calc(var(--u) * 15);
+  font-weight: 700;
+}
+
+.rslide[data-step="3"] .r-moved--table {
+  top: 16.296%;
+  width: 44.792%;
+  height: 39.259%;
+}
+
+.rslide[data-step="3"] .r-moved--talk {
+  top: 59.259%;
+  height: 13.333%;
+}
+
+.rslide[data-step="3"] .r-moved--price {
+  top: 78.333%;
+  height: 6.852%;
+}
+
+/* 4 字級：圖放大到整頁寬，留下的那句 24 pt */
+.rslide[data-step="4"] .r-title,
+.rslide[data-step="5"] .r-title {
+  height: 13%;
+  font-size: calc(var(--u) * 36);
+}
+
+.rslide[data-step="4"] .r-table,
+.rslide[data-step="5"] .r-table,
+.rslide[data-step="5"] .r-text,
+.rslide[data-step="4"] .r-text li:not(.r-key) {
+  display: none;
+}
+
+.rslide[data-step="4"] {
+  --cat: calc(var(--u) * 30);
+}
+
+.rslide[data-step="4"] .r-chart {
+  top: 17.778%;
+  left: 4.1667%;
+  width: 91.667%;
+  height: 54%;
+}
+
+.rslide[data-step="4"] .r-cap,
+.rslide[data-step="4"] .r-axis,
+.rslide[data-step="4"] .r-gl,
+.rslide[data-step="4"] .r-legend {
+  font-size: calc(var(--u) * 20);
+}
+
+.rslide[data-step="4"] .r-axis {
+  margin: calc(var(--u) * -10) 0 calc(var(--cat) - var(--u) * 10);
+}
+
+.rslide[data-step="4"] .r-plot {
+  grid-template-columns: calc(var(--u) * 26) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.rslide[data-step="4"] .r-plot::before {
+  left: calc(var(--u) * 34);
+}
+
+.rslide[data-step="4"] .r-group {
+  padding: 0 18%;
+}
+
+.rslide[data-step="4"] .r-bar b,
+.rslide[data-step="5"] .r-bar b {
+  display: block;
+}
+
+.rslide[data-step="4"] .r-text {
+  top: 75.5%;
+  height: 18%;
+  grid-template-rows: none;
+  padding: 0;
+  font-size: calc(var(--u) * 24);
+  line-height: 1.35;
+}
+
+.rslide[data-step="4"] .r-text li {
+  padding-left: 0;
+}
+
+.rslide[data-step="4"] .r-text li::before {
+  display: none;
+}
+
+/* 5 焦點：標題寫結論，橘色只給一根長條，格線、圖例、座標軸拿掉 */
+.rslide[data-step="5"] {
+  --cat: calc(var(--u) * 64);
+}
+
+.rslide[data-step="5"] .r-topic,
+.rslide[data-step="5"] .r-cap,
+.rslide[data-step="5"] .r-axis,
+.rslide[data-step="5"] .r-legend,
+.rslide[data-step="5"] .r-gl-a,
+.rslide[data-step="5"] .r-plot::before {
+  display: none;
+}
+
+.rslide[data-step="5"] .r-claim,
+.rslide[data-step="5"] .r-gl-b,
+.rslide[data-step="5"] .r-source {
+  display: block;
+}
+
+.rslide[data-step="5"] .r-title {
+  font-weight: 900;
+}
+
+.rslide[data-step="5"] .r-chart {
+  top: 21%;
+  left: 4.1667%;
+  width: 91.667%;
+  height: 66%;
+}
+
+.rslide[data-step="5"] .r-plot {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 6%;
+}
+
+.rslide[data-step="5"] .r-group {
+  padding: 0 14%;
+}
+
+/* 拿掉座標軸之後，只留一條底線 */
+.rslide[data-step="5"] .r-group::after {
+  content: "";
+  position: absolute;
+  right: 6%;
+  bottom: var(--cat);
+  left: 6%;
+  height: calc(var(--u) * 1.5);
+  background: #9AA5AD;
+}
+
+.rslide[data-step="5"] .r-group .r-bar {
+  --bar: #C9D2D8;
+}
+
+.rslide[data-step="5"] .r-group .r-bar--2 {
+  --bar: #F2A541;
+}
+
+.rslide[data-step="5"] .r-bar b {
+  color: #566570;
+  font-size: calc(var(--u) * 24);
+}
+
+.rslide[data-step="5"] .r-bar--2 b {
+  color: #A35F00;
+  font-size: calc(var(--u) * 30);
+}
+
+.rslide[data-step="5"] .r-bl,
+.rslide[data-step="5"] .r-bar--2 .r-up,
+.rslide[data-step="5"] .r-bar--4 .r-flat {
+  display: block;
+}
+
+.rslide[data-step="5"] .r-gl {
+  padding-top: calc(var(--u) * 30);
+  color: #16324F;
+  font-size: calc(var(--u) * 20);
+  font-weight: 700;
+}
+
+.r-source {
+  top: 91.481%;
+  left: 4.1667%;
+  width: 91.667%;
+  color: #566570;
+  font-size: calc(var(--u) * 12);
+}
+
+/* 對齊線：只在按「顯示對齊線」時出現，改之前也看得到對不齊 */
+.rslide[data-lines] .r-lines {
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.r-lines i {
+  position: absolute;
+  border: 0 dashed #E8923A;
+}
+
+.r-lines .v1,
+.r-lines .v2,
+.r-lines .v3 {
+  top: 0;
+  bottom: 0;
+  border-left-width: calc(var(--u) * 1.5);
+}
+
+.r-lines .v1 { left: 4.1667%; }
+.r-lines .v2 { left: 50%; }
+.r-lines .v3 { left: 95.833%; }
+
+.r-lines .h1,
+.r-lines .h2,
+.r-lines .h3 {
+  right: 0;
+  left: 0;
+  border-top-width: calc(var(--u) * 1.5);
+}
+
+.r-lines .h1 { top: 16.296%; }
+.r-lines .h2 { top: 55.556%; }
+.r-lines .h3 { top: 92.593%; }
+
+/* ===== 學術報告：常見的樣子／改過之後 ===== */
+.ac {
+  background: #FFFFFF;
+  color: #1E2A32;
+}
+
+.ac-before,
+.ac-after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 12);
+  padding: 4.5% 6%;
+}
+
+.ac[data-state="after"] .ac-before,
+.ac[data-state="before"] .ac-after {
+  display: none;
+}
+
+.ac-head {
+  color: #1F3864;
+  font-size: calc(var(--u) * 22);
+  font-weight: 700;
+}
+
+.ac-para {
+  color: #262626;
+  font-size: calc(var(--u) * 15);
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.ac-para--wide {
+  font-size: calc(var(--u) * 14);
+}
+
+.ac-frame {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: calc(var(--u) * 8) 18%;
+  width: 52%;
+  margin: calc(var(--u) * 6) auto 0;
+  font-size: calc(var(--u) * 11);
+  text-align: center;
+}
+
+.ac-frame span {
+  padding: calc(var(--u) * 6);
+  border: calc(var(--u) * 1) solid #404040;
+}
+
+.ac-frame span:first-child {
+  grid-row: 1 / 3;
+  align-self: center;
+}
+
+.ac-cap {
+  color: #404040;
+  font-size: calc(var(--u) * 11);
+  text-align: center;
+}
+
+.ac-cap--top {
+  font-size: calc(var(--u) * 13);
+  font-weight: 700;
+}
+
+.ac-reg {
+  width: 100%;
+  border-top: calc(var(--u) * 1.5) solid #262626;
+  border-bottom: calc(var(--u) * 1.5) solid #262626;
+  border-collapse: collapse;
+  font-size: calc(var(--u) * 13);
+  text-align: center;
+}
+
+.ac-reg th,
+.ac-reg td {
+  padding: calc(var(--u) * 5) calc(var(--u) * 6);
+}
+
+.ac-reg thead th {
+  border-bottom: calc(var(--u) * 1) solid #262626;
+}
+
+.ac-reg td:first-child {
+  text-align: left;
+}
+
+.ac-fine {
+  color: #595959;
+  font-size: calc(var(--u) * 10.5);
+}
+
+.ac-title {
+  color: #16324F;
+  font-size: calc(var(--u) * 32);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.ac-table,
+.ac-three {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(var(--u) * 19);
+  line-height: 1.35;
+}
+
+.ac-table th,
+.ac-three th {
+  padding: calc(var(--u) * 6) calc(var(--u) * 12);
+  border-bottom: calc(var(--u) * 1.5) solid #9AA5AD;
+  color: #566570;
+  font-size: calc(var(--u) * 14);
+  text-align: left;
+}
+
+.ac-table td,
+.ac-three td {
+  padding: calc(var(--u) * 10) calc(var(--u) * 12);
+  border-bottom: calc(var(--u) * 1.5) solid #D5DCE1;
+  color: #3A4750;
+}
+
+.ac-table td:first-child {
+  color: #566570;
+  font-size: calc(var(--u) * 16);
+}
+
+.ac-gap {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 16);
+  margin-top: auto;
+  padding: calc(var(--u) * 14) calc(var(--u) * 18);
+  background: #FDEBD3;
+  color: #16324F;
+  font-size: calc(var(--u) * 28);
+  font-weight: 900;
+}
+
+.ac-gap b {
+  padding: 0 calc(var(--u) * 10);
+  background: #F2A541;
+  font-size: calc(var(--u) * 18);
+}
+
+.ac-steps,
+.ac-boxes {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: center;
+  gap: 4%;
+}
+
+.ac-steps li {
+  display: grid;
+  gap: calc(var(--u) * 6);
+  padding: calc(var(--u) * 18);
+  border-top: calc(var(--u) * 6) solid #16324F;
+  background: #F3F6F8;
+}
+
+.ac-steps b {
+  color: #566570;
+  font-size: calc(var(--u) * 15);
+}
+
+.ac-steps strong {
+  color: #16324F;
+  font-size: calc(var(--u) * 28);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.ac-steps span {
+  color: #3A4750;
+  font-size: calc(var(--u) * 17);
+}
+
+.ac-foot {
+  color: #566570;
+  font-size: calc(var(--u) * 14);
+}
+
+.ac-three {
+  margin-top: calc(var(--u) * 12);
+}
+
+.ac-three td:nth-child(2) {
+  font-weight: 900;
+  text-align: right;
+}
+
+.ac-three td:nth-child(3) {
+  color: #566570;
+  font-size: calc(var(--u) * 15);
+}
+
+.ac-three .is-key td {
+  background: #FDEBD3;
+  color: #16324F;
+  font-size: calc(var(--u) * 24);
+  font-weight: 900;
+}
+
+.ac-three .is-key td:nth-child(3) {
+  color: #A35F00;
+  font-size: calc(var(--u) * 17);
+}
+
+.ac-boxes li {
+  display: grid;
+  align-content: center;
+  gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 20) calc(var(--u) * 16);
+  background: #F3F6F8;
+  text-align: center;
+}
+
+.ac-boxes strong {
+  color: #16324F;
+  font-size: calc(var(--u) * 40);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.ac-boxes b {
+  color: #3A4750;
+  font-size: calc(var(--u) * 17);
+}
+
+.ac-boxes span {
+  color: #566570;
+  font-size: calc(var(--u) * 14);
+}
+
+.ac-boxes .is-key {
+  background: #FDEBD3;
+}
+
+.ac-boxes .is-key strong {
+  color: #A35F00;
+}
+
+/* ===== 5-3 AI 給的大綱：給了哪一件，哪幾行就變好 ===== */
+.ai-mock {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  padding-bottom: 3%;
+  container-type: inline-size;
+  background: #FFFFFF;
+  color: #1E2A32;
+  font-family: var(--font-body);
+}
+
+.ai-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  padding: 1.4cqw 2.4cqw;
+  background: #E9EEF1;
+  color: #566570;
+  font-size: 2.2cqw;
+}
+
+.ai-bar i {
+  width: 1.6cqw;
+  height: 1.6cqw;
+  border-radius: 50%;
+  background: #C9D2D8;
+}
+
+.ai-meta {
+  margin: 1.8cqw 3.6cqw 0;
+  color: #566570;
+  font-size: 2.2cqw;
+}
+
+.ai-meta--end {
+  margin-top: auto;
+}
+
+.ai-list {
+  margin: 1.2cqw 3.6cqw 0;
+  padding-left: 3.6cqw;
+  font-size: 2.6cqw;
+  line-height: 1.5;
+  list-style: decimal;
+}
+
+.ai-line {
+  padding: 0.3cqw 0;
+}
+
+.ai-mock .v-on {
+  display: none;
+  color: #16324F;
+  font-weight: 700;
+}
+
+.ai-mock .v-off {
+  color: #3A4750;
+}
+
+.ai-flag {
+  margin-left: 1cqw;
+  padding: 0 0.8cqw;
+  background: #FBE3DF;
+  color: #8E2B20;
+  font-size: 2cqw;
+  font-weight: 700;
+}
+
+.ai-mock[data-thesis] [data-part="thesis"] .v-off,
+.ai-mock[data-outline] [data-part="outline"] .v-off,
+.ai-mock[data-data] [data-part="data"] .v-off,
+.ai-mock[data-not] [data-part="not"] .v-off,
+.ai-mock[data-audience] .v-off[data-key="audience"],
+.ai-mock[data-spec] .v-off[data-key="spec"] {
+  display: none;
+}
+
+.ai-mock[data-thesis] [data-part="thesis"] .v-on,
+.ai-mock[data-outline] [data-part="outline"] .v-on,
+.ai-mock[data-data] [data-part="data"] .v-on,
+.ai-mock[data-not] [data-part="not"] .v-on,
+.ai-mock[data-audience] .v-on[data-key="audience"],
+.ai-mock[data-spec] .v-on[data-key="spec"] {
+  display: inline;
+}
+
+/* ===== 5-6 AI 的初稿 ===== */
+.ai-draft {
+  background: #FFFFFF;
+  color: #262626;
+}
+
+.ai-draft > * {
+  left: 6%;
+  width: 88%;
+}
+
+.ad-title {
+  top: 6%;
+  color: #1F3864;
+  font-size: calc(var(--u) * 30);
+  font-weight: 700;
+}
+
+.ad-list {
+  top: 19%;
+  padding-left: calc(var(--u) * 22);
+  font-size: calc(var(--u) * 16);
+  line-height: 1.5;
+  list-style: disc;
+}
+
+.ad-strip {
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 10);
+  padding: calc(var(--u) * 8) calc(var(--u) * 10);
+  background: #F3F6F8;
+  color: #566570;
+  font-size: calc(var(--u) * 13);
+}
+
+.ad-strip span {
+  flex: none;
+}
+
+.ad-strip i {
+  flex: 1;
+  aspect-ratio: 16 / 9;
+  border: calc(var(--u) * 1) solid #C9D2D8;
+  background:
+    linear-gradient(#1F3864, #1F3864) 12% 16% / 46% 12% no-repeat,
+    linear-gradient(#A6A6A6, #A6A6A6) 12% 44% / 76% 7% no-repeat,
+    linear-gradient(#A6A6A6, #A6A6A6) 12% 62% / 76% 7% no-repeat,
+    linear-gradient(#A6A6A6, #A6A6A6) 12% 80% / 60% 7% no-repeat,
+    #FFFFFF;
+}
+
+/* ===== 2-8 後排測試：坐得越遠，字看起來越小 ===== */
+.ladder {
+  background: #FFFFFF;
+}
+
+.ladder ol {
+  position: absolute;
+  inset: 6% 5% 6% 6%;
+  display: grid;
+  align-content: space-between;
+}
+
+.ladder li {
+  display: grid;
+  grid-template-columns: calc(var(--u) * 64) minmax(0, 1fr) calc(var(--u) * 210);
+  align-items: center;
+  column-gap: calc(var(--u) * 16);
+}
+
+.ladder b {
+  color: #566570;
+  font-size: calc(var(--u) * 14);
+}
+
+.ladder__text {
+  color: #16324F;
+  font-size: calc(var(--u) * var(--pt));
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transform: scale(calc(1 / (1 + (var(--row, 1) - 1) * 0.16)));
+  transform-origin: left center;
+  filter: blur(calc((var(--row, 1) - 1) * 0.05px));
+}
+
+.ladder em {
+  color: #566570;
+  font-size: calc(var(--u) * 14);
+  font-style: normal;
+}
+
+.ladder em strong {
+  margin-right: 0.5em;
+  color: #16324F;
+}

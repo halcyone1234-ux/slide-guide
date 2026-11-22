@@ -318,7 +318,7 @@ html[data-present] .level {
   text-wrap: balance;
 }
 
-/* ===== 1-2 鉤子 ===== */
+/* ===== 4-3 鉤子 ===== */
 .hook {
   display: grid;
   flex: 1;
@@ -384,38 +384,6 @@ html[data-present] .level {
   font-size: var(--t-s);
   font-weight: 400;
   line-height: 1;
-}
-
-/* ===== 骨架場景（之後會逐一換成正式內容） ===== */
-.stub {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  width: 100%;
-  max-width: 980px;
-  margin-inline: auto;
-  padding: 16px var(--gutter-r) 96px var(--gutter-l);
-}
-
-.stub__tag {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: var(--px) calc(var(--px) * 2);
-  background: var(--navy);
-  color: var(--white);
-  font-family: var(--font-pixel);
-  font-size: var(--t-s);
-  line-height: 1;
-}
-
-.stub__body {
-  min-width: 0;
-}
-
-.stub__body p:last-child {
-  margin-top: 12px;
 }
 
 /* ===== 螢幕較矮或較窄 ===== */
@@ -505,13 +473,6 @@ html[data-present] .level {
   .level__name {
     font-size: var(--t-xl);
   }
-
-  .stub {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 16px;
-  }
 }
 
 /* ===== 互動場景共用：舞台、標題、操作、對話 ===== */
@@ -519,21 +480,21 @@ html[data-present] .level {
   margin-top: 8px;
 }
 
+/* 舞台在左、說明和操作在右；對話框放在舞台下面，右下角留給觀眾魟魚。 */
 .bench {
   display: grid;
-  flex: 1;
+  flex: none;
   grid-template-areas:
     "stage head"
     "stage controls"
-    "stage talk";
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  grid-template-rows: auto auto 1fr;
-  align-content: center;
-  gap: 16px 40px;
+    "talk controls";
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: 12px 40px;
   width: 100%;
   max-width: var(--page);
-  margin-inline: auto;
-  padding: 4px var(--gutter-r) 28px var(--gutter-l);
+  margin: auto;
+  padding: 4px var(--gutter-r) 16px var(--gutter-l);
 }
 
 .bench--flip {
@@ -542,6 +503,7 @@ html[data-present] .level {
     "controls stage"
     "talk stage";
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
 }
 
 .bench__head {
@@ -551,7 +513,7 @@ html[data-present] .level {
 
 .bench__stage {
   grid-area: stage;
-  align-self: center;
+  align-self: start;
   min-width: 0;
 }
 
@@ -703,117 +665,7 @@ html[data-present] .level {
   visibility: hidden;
 }
 
-/* ===== 0-3 四個理由 ===== */
-.sim .monitor__body {
-  margin-bottom: calc(var(--px) * 2);
-}
-
-.rhythm {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.rhythm li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.rhythm svg {
-  width: 100%;
-  height: auto;
-  background: var(--white);
-  box-shadow: 0 0 0 var(--px) var(--line);
-}
-
-.rhythm .is-now svg {
-  box-shadow: 0 0 0 var(--px) var(--line), 0 0 0 calc(var(--px) * 2) var(--orange);
-}
-
-.rhythm .k1 { fill: var(--navy); }
-.rhythm .k2 { fill: #A9B5BC; }
-.rhythm .k3 { fill: var(--orange); }
-.rhythm .k4 { fill: #7FA7C9; }
-.rhythm .k5 { fill: #3B4763; }
-
-.rhythm .t-on,
-.sim[data-vary] .rhythm .t-off {
-  display: none;
-}
-
-.sim[data-vary] .rhythm .t-on {
-  display: inline;
-}
-
-.rhythm__no {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.switches {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px 8px;
-}
-
-.switch {
-  justify-content: flex-start;
-  width: auto;
-  padding-inline: 12px;
-}
-
-.switch__state {
-  margin-left: auto;
-  padding: 2px 6px;
-  background: var(--paper-deep);
-  color: var(--muted);
-}
-
-.switch--me .picon { color: #A25E00; }
-.switch--curious .picon { color: var(--navy); }
-.switch--easy .picon { color: var(--green-text); }
-.switch--vary .picon { color: var(--purple); }
-
-.switch[aria-pressed="true"] .picon {
-  color: currentColor;
-}
-
-.switch[aria-pressed="true"] .switch__state {
-  background: var(--white);
-  color: var(--navy);
-}
-
-.switch--me[aria-pressed="true"],
-.switch--me[aria-pressed="true"]:hover {
-  background: var(--orange);
-  color: var(--navy);
-}
-
-.switch--curious[aria-pressed="true"],
-.switch--curious[aria-pressed="true"]:hover {
-  background: var(--navy);
-  color: var(--white);
-}
-
-.switch--easy[aria-pressed="true"],
-.switch--easy[aria-pressed="true"]:hover {
-  background: var(--green);
-  color: var(--white);
-}
-
-.switch--vary[aria-pressed="true"],
-.switch--vary[aria-pressed="true"]:hover {
-  background: var(--purple);
-  color: var(--white);
-}
-
-
-/* ===== 1-1 一句話結論 ===== */
+/* ===== 4-2 一句話結論 ===== */
 .oneline {
   display: flex;
   flex-direction: column;
@@ -905,7 +757,7 @@ html[data-present] .level {
   font-weight: 700;
 }
 
-/* ===== 1-3 故事線 ===== */
+/* ===== 4-4 故事線 ===== */
 .story {
   display: grid;
   flex: 1;
@@ -1037,7 +889,7 @@ html[data-present] .level {
   gap: 4px 8px;
 }
 
-/* ===== 1-4 時間怎麼分 ===== */
+/* ===== 4-5 時間怎麼分 ===== */
 .plan {
   display: grid;
   flex: 1;
@@ -1194,12 +1046,14 @@ html.tr-on .is-in .plan__seg {
   align-self: start;
 }
 
-/* ===== 1-5 20 格分鏡 ===== */
-.seg--hook { --c: var(--orange); }
+/* ===== 4-6 20 格分鏡：七塊各一個顏色 ===== */
+.seg--open { --c: var(--orange); }
 .seg--problem { --c: var(--navy); }
-.seg--body { --c: var(--green); }
-.seg--close { --c: var(--purple); }
-.seg--takeaway { --c: var(--red); }
+.seg--known { --c: var(--navy-soft); }
+.seg--method { --c: var(--purple); }
+.seg--result { --c: var(--green); }
+.seg--discuss { --c: var(--green-deep); }
+.seg--close { --c: var(--red); }
 
 .board {
   display: grid;
@@ -1324,7 +1178,7 @@ html.tr-on .is-in .plan__seg {
   display: none;
 }
 
-/* ===== 1-6 出發前的背包 ===== */
+/* ===== 4-8 出發前的背包 ===== */
 .pack {
   display: grid;
   flex: 1;
@@ -1542,23 +1396,11 @@ html.tr-on .is-in .plan__seg {
 }
 
 @media (max-width: 720px) {
-  .switches {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .oneline__field {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .oneline__label {
     padding-top: 0;
-  }
-
-  .rhythm {
-    gap: 8px;
-  }
-
-  .rhythm__no {
-    font-size: 12px;
   }
 }

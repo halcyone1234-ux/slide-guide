@@ -1,4 +1,4 @@
-/* 列印樣式：平常印網頁時藏起介面；按「列印分鏡學習單」時只印學習單。檢查表的列印會在後面加入。 */
+/* 列印樣式：平常印網頁時藏起介面；按「列印學習單」時只印分鏡學習單，按「列印檢查表」時只印檢查表。 */
 @page {
   size: A4;
   margin: 10mm;
@@ -32,6 +32,73 @@
 
   html.print-sheet body > .sheet {
     display: block !important;
+  }
+
+  /* 交件前檢查表：一張 A4，一題一行，留打勾的格子 */
+  html.print-checklist,
+  html.print-checklist body,
+  html.print-checklist #s-6-1 {
+    background: #FFFFFF;
+  }
+
+  html.print-checklist body > *:not(main),
+  html.print-checklist main > *:not(#s-6-1),
+  html.print-checklist #s-6-1 > .scene__chrome,
+  html.print-checklist #s-6-1 .bench__head,
+  html.print-checklist #s-6-1 .bench__controls,
+  html.print-checklist #s-6-1 .dialog {
+    display: none !important;
+  }
+
+  html.print-checklist #s-6-1 {
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  html.print-checklist #s-6-1 .bench {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+
+  html.print-checklist [data-tr] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  html.print-checklist .checklist {
+    margin: 0;
+    padding: 8mm;
+    border: 0.3mm solid #000000;
+    box-shadow: none;
+    color: #000000;
+  }
+
+  html.print-checklist .checklist__title {
+    font-size: 24px;
+  }
+
+  html.print-checklist .checklist__group {
+    color: #000000;
+    font-size: 11pt;
+  }
+
+  html.print-checklist .checklist__list {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 6mm;
+    margin-top: 8mm;
+  }
+
+  html.print-checklist .checklist__list label {
+    gap: 4mm;
+    font-size: 13pt;
+  }
+
+  html.print-checklist .checklist__list input {
+    width: 6mm;
+    height: 6mm;
   }
 }
 

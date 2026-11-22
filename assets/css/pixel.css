@@ -216,38 +216,6 @@
   background: var(--green);
 }
 
-/* 四個理由：固定的圖示和顏色 */
-.reason {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(var(--px) * 2);
-  padding: calc(var(--px) * 2) calc(var(--px) * 3);
-  font-family: var(--font-pixel);
-  font-size: var(--t-s);
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.reason--me {
-  background: var(--orange);
-  color: var(--navy);
-}
-
-.reason--curious {
-  background: var(--navy);
-  color: var(--white);
-}
-
-.reason--easy {
-  background: var(--green);
-  color: var(--white);
-}
-
-.reason--vary {
-  background: var(--purple);
-  color: var(--white);
-}
-
 /* 觀眾魟魚 */
 .audience {
   position: fixed;
@@ -312,7 +280,7 @@
   flex: none;
   align-items: flex-end;
   justify-content: center;
-  width: calc(46px * var(--talk));
+  min-width: calc(46px * var(--talk));
 }
 
 .dialog__who .sprite {

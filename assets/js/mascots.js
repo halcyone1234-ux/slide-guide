@@ -113,9 +113,11 @@
     audienceBox.hidden = !audienceBox.hidden;
   });
 
-  /* 手機畫面小，魟魚下面有文字或按鈕時先躲到畫面外，不擋內容。 */
+  /* 手機畫面小，魟魚下面有任何內容（不只是背景）時先躲到畫面外，不擋內容。 */
   var phone = window.matchMedia('(max-width: 720px)');
-  var READABLE = 'h1, h2, h3, p, li, button, a, .dialog__box, .monitor__body';
+  var BACKDROP = 'html, body, main, .scene, .level, .level__cloud, .hero, .hero__layout, .hero__floor, .hero__stars, ' +
+    '.bench, .bench__stage, .bench__controls, .bench__head, .duel, .story, .plan, .board, .pack, .hook, .hook__stage, ' +
+    '.maker, .maker__form, .maker__out';
   var dodgeTimer = 0;
 
   function overReadable() {
@@ -126,7 +128,7 @@
     for (var row = 0; row < 3; row += 1) {
       for (var col = 0; col < 5; col += 1) {
         var el = document.elementFromPoint(left + w * (col + 0.5) / 5, top + h * (row + 0.5) / 3);
-        if (el && el.closest(READABLE)) { return true; }
+        if (el && !el.matches(BACKDROP)) { return true; }
       }
     }
     return false;
@@ -143,7 +145,11 @@
 
   window.addEventListener('scroll', queueDodge, { passive: true });
   window.addEventListener('resize', queueDodge);
+  /* 進場動畫跑完之後再看一次，才知道最後的位置。 */
   document.addEventListener('stopchange', queueDodge);
+  document.addEventListener('animationend', function (event) {
+    if (event.target.closest && event.target.closest('[data-tr]')) { queueDodge(); }
+  });
   document.addEventListener('click', queueDodge);
 
   /* 對話框：文字一個字一個字出現，點一下直接顯示完整。 */
@@ -209,9 +215,9 @@
     }, TYPE_MS));
   }
 
-  /* 第一次走到場景時，對話才開始打字。 */
+  /* 第一次走到場景時，對話才開始打字。按鈕上的 data-say 是按下去才說的話，不在這裡打字。 */
   document.addEventListener('stopchange', function (event) {
-    event.detail.stop.querySelectorAll('[data-say]').forEach(function (el) {
+    event.detail.stop.querySelectorAll('.dialog [data-say]').forEach(function (el) {
       if (el.hasAttribute('data-said')) { return; }
       el.setAttribute('data-said', '');
       say(el, el.getAttribute('data-say'));
